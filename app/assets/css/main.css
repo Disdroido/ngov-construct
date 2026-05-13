@@ -3,44 +3,37 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --color-charcoal: #1A1A2E;
-    --color-charcoal-light: #2D2D44;
-    --color-orange: #E85D04;
-    --color-orange-light: #F47A2C;
-    --color-steel: #388ECC;
-    --color-steel-light: #5BA3D9;
-    --color-warm-gray: #F5F5F0;
-    --color-near-black: #0A0A0A;
-  }
-
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply font-sans text-near-black bg-warm-gray antialiased;
+    @apply font-sans text-white bg-[#0a0a0a] antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-extrabold text-charcoal;
+    @apply font-sans font-extrabold text-white;
+  }
+
+  ::selection {
+    @apply bg-[#E85D04]/30 text-white;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-orange text-white font-semibold text-lg rounded-lg transition-all duration-300 hover:bg-orange-light hover:shadow-lg hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-8 py-4 bg-[#E85D04] text-white font-semibold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-[#F47A2C];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent text-charcoal font-semibold text-lg rounded-lg border-2 border-charcoal transition-all duration-300 hover:bg-charcoal hover:text-white;
+    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent text-white font-semibold text-sm uppercase tracking-wider border border-white/20 transition-all duration-300 hover:border-[#E85D04]/50;
   }
 
   .section-heading {
-    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight;
   }
 
   .section-subheading {
-    @apply text-lg md:text-xl text-charcoal/70 max-w-2xl;
+    @apply text-lg text-white/50 max-w-2xl;
   }
 }
