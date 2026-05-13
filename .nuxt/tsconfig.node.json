@@ -1,12 +1,6 @@
 {
   "compilerOptions": {
     "paths": {
-      "vue-router": [
-        "../node_modules/vue-router"
-      ],
-      "vue-router/auto-routes": [
-        "../node_modules/vue-router/vue-router-auto-routes"
-      ],
       "nuxt": [
         "../node_modules/nuxt"
       ],
@@ -87,13 +81,13 @@
   ],
   "exclude": [
     "../node_modules",
-    "../../../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/@nuxtjs/tailwindcss/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../dist",
     "../.data",
+    "../app/**/*",
     "../modules/*/runtime/**/*",
     "../test/nuxt/**/*",
     "../tests/nuxt/**/*",

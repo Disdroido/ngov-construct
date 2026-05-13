@@ -1,0 +1,12 @@
+# Nuxt dev/build outputs
+.output
+.nuxt
+# Node modules
+node_modules
+# OS files
+.DS_Store
+*.log
+# Local env files
+.env
+.env.*
+!.env.example
