@@ -77,20 +77,40 @@
           <div>
             <h2>Every project <em>we've ever touched.</em></h2>
           </div>
-          <div class="note">
-            Twenty-eight projects, sorted by file rather than year. Click any image to read the full record.
-          </div>
         </div>
 
-        <div ref="wallRef" class="wall" :style="{ height: layout.wallHeight + 'px' }">
+        <!-- Mobile carousel -->
+        <div class="wall-mobile">
+          <article
+            v-for="p in PROJECTS"
+            :key="'m' + p.id"
+            class="tile"
+            @click="open = p"
+          >
+            <div class="tile-frame">
+              <img class="tile-img" :src="imgSrc(p)" :alt="p.title" loading="lazy" />
+              <div class="tile-tint"></div>
+              <div class="tile-info">
+                <div class="t">{{ p.title }}</div>
+                <div class="m">
+                  <span>{{ p.year }}</span>
+                  <span class="sep"></span>
+                  <span>{{ p.city }}</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <!-- Desktop masonry -->
+        <div ref="wallRef" class="wall-desktop" :style="{ height: layout.wallHeight + 'px' }">
           <article
             v-for="t in layout.tiles"
-            :key="t.p.id"
+            :key="'d' + t.p.id"
             class="tile"
             :style="{ width: t.style.width + 'px', transform: t.style.transform }"
             @click="open = t.p"
           >
-            <div class="tile-frame" :style="{ width: '100%', height: t.style._h + 'px' }">
+            <div class="tile-frame" :style="{ height: t.style._h + 'px' }">
               <img class="tile-img" :src="imgSrc(t.p)" :alt="t.p.title" loading="lazy" />
               <div class="tile-tint"></div>
               <div class="tile-info">
@@ -300,14 +320,14 @@ function onKey(e: KeyboardEvent) {
   if (e.key === 'Escape') open.value = null
 }
 
-// --- unruly masonry wall (ported from design wall.jsx) ---
+// --- desktop masonry ---
 const RANDOMNESS = 0.85
 const GUTTER = 16
 const wallRef = ref<HTMLElement | null>(null)
 const wallWidth = ref(1200)
 
 const columns = computed(() =>
-  wallWidth.value > 1200 ? 5 : wallWidth.value > 900 ? 4 : wallWidth.value > 620 ? 3 : wallWidth.value > 520 ? 2 : 1
+  wallWidth.value > 1200 ? 5 : wallWidth.value > 900 ? 4 : wallWidth.value > 620 ? 3 : wallWidth.value > 420 ? 2 : 1
 )
 
 function seeded(seed: number) {
@@ -319,8 +339,8 @@ function seeded(seed: number) {
 }
 
 const layout = computed(() => {
-  const cols = columns.value
   const containerWidth = wallWidth.value
+  const cols = columns.value
   const colWidth = (containerWidth - GUTTER * (cols - 1)) / cols
   const colHeights = Array(cols).fill(0)
   const rand = seeded(2025 + cols * 11 + Math.round(RANDOMNESS * 1000))
@@ -349,8 +369,7 @@ const layout = computed(() => {
 
     const yOffset = Math.round(rand() * 80 * RANDOMNESS)
     const rotChance = RANDOMNESS > 0.3 ? 0.18 * Math.min(1, RANDOMNESS) : 0
-    const rotMag = cols < 3 ? 0.5 : 1.4
-    const rot = rand() < rotChance ? (rand() - 0.5) * rotMag : 0
+    const rot = rand() < rotChance ? (rand() - 0.5) * 1.4 : 0
 
     const x = bestCol * (colWidth + GUTTER)
     const y = bestScore + yOffset
@@ -580,24 +599,60 @@ em { font-style: normal; }
 .gallery-head h2 em { color: #E42929; }
 .gallery-head .note { font-size: 16px; line-height: 1.6; color: #5b6373; max-width: 42ch; text-wrap: pretty; }
 
-.wall { position: relative; width: 100%; }
-.tile {
+/* --- mobile carousel --- */
+.wall-mobile {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  padding-bottom: 8px;
+  overscroll-behavior-x: contain;
+}
+.wall-mobile > .tile {
+  flex: 0 0 78%;
+  scroll-snap-align: start;
+}
+.wall-mobile .tile-frame {
+  aspect-ratio: 3 / 2;
+  width: 100%;
+}
+
+/* --- desktop masonry --- */
+.wall-desktop {
+  display: none;
+  position: relative;
+  width: 100%;
+}
+@media (min-width: 480px) {
+  .wall-mobile { display: none; }
+  .wall-desktop { display: block; }
+}
+.wall-desktop > .tile {
   position: absolute;
   transition: transform 0.45s cubic-bezier(.2,.7,.2,1), opacity .3s;
-  cursor: pointer; will-change: transform;
+  cursor: pointer;
 }
-.tile:hover { z-index: 5; }
+.wall-desktop > .tile:hover { z-index: 5; }
+
+/* --- shared tile styles --- */
+.tile { cursor: pointer; }
 .tile:hover .tile-frame { transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(15,24,48,0.35), 0 12px 24px -12px rgba(15,24,48,0.2); }
 .tile:hover .tile-img { transform: scale(1.04); }
 .tile-frame {
-  position: relative; overflow: hidden; background: #0F2240;
+  position: relative;
+  overflow: hidden;
+  background: #0F2240;
   transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s;
   box-shadow: 0 12px 30px -22px rgba(15,24,48,0.45);
 }
 .tile-img {
-  width: 100%; height: 100%; display: block; object-fit: cover;
-  transition: transform 0.6s cubic-bezier(.2,.7,.2,1);
   position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(.2,.7,.2,1);
+  display: block;
 }
 .tile-tint {
   position: absolute; inset: 0;
@@ -615,7 +670,6 @@ em { font-style: normal; }
   .tile-tint { opacity: 1; }
   .tile-info { opacity: 1; transform: none; }
   .tile-info .t { font-size: 15px; }
-  .tile-frame { box-shadow: 0 12px 30px -22px rgba(15,24,48,0.45); }
 }
 .tile-info .t {
   font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: 17px; line-height: 1.15;
