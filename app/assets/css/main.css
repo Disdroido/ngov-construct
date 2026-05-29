@@ -8,32 +8,20 @@
   }
 
   body {
-    @apply font-sans text-white bg-[#0a0a0a] antialiased;
+    @apply font-sans text-ink bg-[#fdfdfd] antialiased;
+    font-size: 15px;
+    line-height: 1.55;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-extrabold text-white;
+    @apply font-display font-bold text-ink;
   }
 
   ::selection {
-    @apply bg-[#E85D04]/30 text-white;
-  }
-}
-
-@layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-[#E85D04] text-white font-semibold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-[#F47A2C];
+    @apply bg-red text-white;
   }
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent text-white font-semibold text-sm uppercase tracking-wider border border-white/20 transition-all duration-300 hover:border-[#E85D04]/50;
-  }
-
-  .section-heading {
-    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight;
-  }
-
-  .section-subheading {
-    @apply text-lg text-white/50 max-w-2xl;
+  img {
+    @apply block max-w-full;
   }
 }

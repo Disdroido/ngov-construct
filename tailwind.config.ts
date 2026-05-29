@@ -17,28 +17,38 @@ export default {
   theme: {
     extend: {
       colors: {
-        charcoal: {
-          DEFAULT: '#1A1A2E',
-          light: '#2D2D44'
+        ink: {
+          DEFAULT: '#0f1830',
+          2: '#2a3142',
+          soft: '#5b6373',
+          mute: '#8a8f9b'
         },
-        orange: {
-          DEFAULT: '#E85D04',
-          light: '#F47A2C'
+        navy: {
+          DEFAULT: '#0F2240',
+          dark: '#091a32',
+          deep: '#051022'
         },
-        steel: {
-          DEFAULT: '#388ECC',
-          light: '#5BA3D9'
+        red: {
+          DEFAULT: '#E42929',
+          dark: '#b81e1e',
+          soft: '#f7d4d4'
         },
-        'warm-gray': {
-          DEFAULT: '#F5F5F0'
-        },
-        'near-black': {
-          DEFAULT: '#0A0A0A'
+        paper: '#ffffff',
+        'off-white': '#fdfdfd',
+        'warm-2': '#f1f0eb',
+        'warm-3': '#e5e3dc',
+        rule: {
+          DEFAULT: '#d3cfc3',
+          soft: '#e3dfd3'
         }
       },
       fontFamily: {
-        sans: ['Inter', 'Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        space: ['Space Grotesk', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+        display: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'IBM Plex Mono', 'ui-monospace', 'monospace']
+      },
+      maxWidth: {
+        content: '1400px'
       }
     }
   },
