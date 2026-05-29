@@ -307,7 +307,7 @@ const wallRef = ref<HTMLElement | null>(null)
 const wallWidth = ref(1200)
 
 const columns = computed(() =>
-  wallWidth.value > 1200 ? 5 : wallWidth.value > 900 ? 4 : wallWidth.value > 620 ? 3 : wallWidth.value > 420 ? 2 : 1
+  wallWidth.value > 1200 ? 5 : wallWidth.value > 900 ? 4 : wallWidth.value > 620 ? 3 : wallWidth.value > 520 ? 2 : 1
 )
 
 function seeded(seed: number) {
@@ -349,7 +349,8 @@ const layout = computed(() => {
 
     const yOffset = Math.round(rand() * 80 * RANDOMNESS)
     const rotChance = RANDOMNESS > 0.3 ? 0.18 * Math.min(1, RANDOMNESS) : 0
-    const rot = rand() < rotChance ? (rand() - 0.5) * 1.4 : 0
+    const rotMag = cols < 3 ? 0.5 : 1.4
+    const rot = rand() < rotChance ? (rand() - 0.5) * rotMag : 0
 
     const x = bestCol * (colWidth + GUTTER)
     const y = bestScore + yOffset
@@ -609,6 +610,13 @@ em { font-style: normal; }
   opacity: 0; transform: translateY(6px); transition: opacity .25s, transform .3s;
 }
 .tile:hover .tile-info { opacity: 1; transform: none; }
+
+@media (hover: none) and (pointer: coarse) {
+  .tile-tint { opacity: 1; }
+  .tile-info { opacity: 1; transform: none; }
+  .tile-info .t { font-size: 15px; }
+  .tile-frame { box-shadow: 0 12px 30px -22px rgba(15,24,48,0.45); }
+}
 .tile-info .t {
   font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: 17px; line-height: 1.15;
   letter-spacing: -0.01em; margin: 0 0 6px; text-wrap: balance;
