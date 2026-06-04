@@ -187,12 +187,14 @@
               <img src="/img/photo2.jpg" alt="Restoration site" class="w-full h-full object-cover" />
             </div>
           </div>
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-12 border-t border-white/12">
-            <div class="font-mono text-[10.5px] tracking-[0.2em] uppercase text-white/55 mb-8 col-span-full">What we build / Eight services</div>
-            <div v-for="s in services" :key="s.title" class="pt-6 border-t border-white/10">
-              <h4 class="font-display font-bold text-lg tracking-tight text-white mb-3">{{ s.title }}</h4>
-              <p class="text-sm leading-relaxed text-white/65 mb-4">{{ s.body }}</p>
-              <a class="text-[12.5px] font-semibold text-red no-underline inline-flex items-center gap-1.5" href="#contact">Learn more →</a>
+          <div class="pt-12 border-t border-white/12">
+            <div class="font-mono text-[10.5px] tracking-[0.2em] uppercase text-white/55 mb-8">What we build / Eight services</div>
+            <div class="flex flex-col gap-4">
+              <div v-for="s in services" :key="s.title" class="border border-white/10 rounded-lg p-6">
+                <h4 class="font-display font-bold text-lg tracking-tight text-white mb-3">{{ s.title }}</h4>
+                <p class="text-sm leading-relaxed text-white/65 mb-4">{{ s.body }}</p>
+                <a class="text-[12.5px] font-semibold text-red no-underline inline-flex items-center gap-1.5" href="#contact">Learn more →</a>
+              </div>
             </div>
           </div>
         </div>
