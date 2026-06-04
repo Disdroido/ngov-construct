@@ -49,8 +49,45 @@ export default {
       },
       maxWidth: {
         content: '1400px'
-      }
+      },
+      clipPath: {
+        'hero-right': 'polygon(8% 0, 100% 0, 100% 100%, 0 100%, 0 14%)',
+        'why-image': 'polygon(0 0, 92% 0, 100% 14%, 100% 100%, 8% 100%, 0 86%)',
+        'corner-tl': 'polygon(0 0, 100% 0, 0 100%)',
+        'corner-tr': 'polygon(100% 0, 100% 100%, 0 0)',
+        'tile-cut-l': 'polygon(0 0, 100% 0, 0 100%)',
+        'tile-cut-r': 'polygon(100% 0, 100% 100%, 0 0)',
+      },
+      animation: {
+        'fade-in': 'fade 0.25s ease',
+        'rise': 'rise 0.35s cubic-bezier(.2,.7,.2,1)',
+      },
+      keyframes: {
+        fade: {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        rise: {
+          from: { transform: 'translateY(18px)', opacity: '0' },
+          to: { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+      transitionTimingFunction: {
+        'masonry': 'cubic-bezier(.2,.7,.2,1)',
+      },
     }
   },
-  plugins: []
+  plugins: [
+    function({ addUtilities, theme }) {
+      const clipPathUtilities = {
+        '.clip-hero': { clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0 100%, 0 14%)' },
+        '.clip-why-img': { clipPath: 'polygon(0 0, 92% 0, 100% 14%, 100% 100%, 8% 100%, 0 86%)' },
+        '.clip-corner-tl': { clipPath: 'polygon(0 0, 100% 0, 0 100%)' },
+        '.clip-corner-tr': { clipPath: 'polygon(100% 0, 100% 100%, 0 0)' },
+        '.clip-tile-cut-l': { clipPath: 'polygon(0 0, 100% 0, 0 100%)' },
+        '.clip-tile-cut-r': { clipPath: 'polygon(100% 0, 100% 100%, 0 0)' },
+      }
+      addUtilities(clipPathUtilities)
+    }
+  ]
 } satisfies Config

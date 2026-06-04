@@ -4,120 +4,163 @@
 
     <main>
       <!-- 01 Hero -->
-      <section class="hero">
-        <div class="hero-grid">
-          <div class="hero-left">
+      <section class="relative max-w-content mx-auto pt-10 px-8 md:px-8 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(320px,1fr)_1.15fr] lg:min-h-[540px] gap-12 items-stretch">
+          <!-- Left: heading + CTA -->
+          <div class="flex flex-col justify-between pt-6 pb-10 lg:pb-10">
             <div>
-              <h1>Building what<br>stays standing —<br><em>and remembering<br>what didn't.</em></h1>
-              <p class="hero-desc">NGOV is a small-construction firm working across New England — additions, renovations, outdoor living, and the occasional outbuilding. We take on six to eight projects a season, and we keep a record of every one.</p>
+              <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-[5.5rem] lg:text-[clamp(44px,5.5vw,84px)] leading-[0.96] tracking-tight text-ink mb-5 lg:mb-6">
+                Building what<br>stays standing —<br><span class="text-red">and remembering<br>what didn't.</span>
+              </h1>
+              <p class="text-base lg:text-[17px] leading-relaxed text-ink-soft max-w-[44ch] mb-6 lg:mb-9">
+                NGOV is a small-construction firm working across New England — additions, renovations, outdoor living, and the occasional outbuilding. We take on six to eight projects a season, and we keep a record of every one.
+              </p>
             </div>
-            <div class="cta-row">
-              <button class="btn-primary large" @click="openInquiry">Start your project<span class="ico">&#8594;</span></button>
+            <div class="flex items-center gap-6">
+              <button
+                class="inline-flex items-center gap-3 bg-red text-white border-0 rounded-full py-3.5 pl-6 pr-2 font-sans font-semibold text-[15px] cursor-pointer no-underline transition-colors hover:bg-red-dark"
+                @click="openInquiry"
+              >
+                Start your project
+                <span class="w-9 h-9 bg-white text-red rounded-full grid place-items-center font-bold text-base">→</span>
+              </button>
             </div>
           </div>
-          <div class="hero-right">
-            <img src="/img/hero.png" alt="Looking up through timber framing on an NGOV build" />
-            <div class="hero-tri a"></div>
-            <div class="hero-tri b"></div>
+          <!-- Right: hero image -->
+          <div class="relative overflow-hidden bg-navy clip-hero lg:min-h-0">
+            <img src="/img/hero.png" alt="Looking up through timber framing on an NGOV build" class="w-full h-full object-cover block" />
+            <div class="absolute inset-0 bg-gradient-to-br from-transparent from-50% to-[rgba(26,47,92,0.18)] to-100% pointer-events-none"></div>
+            <!-- Decorative triangles -->
+            <div class="absolute top-0 left-[12%] w-[18%] h-full clip-corner-tl bg-white/25 mix-blend-overlay pointer-events-none"></div>
+            <div class="absolute top-0 left-[32%] w-[9%] h-[70%] clip-corner-tl bg-white/12 mix-blend-overlay pointer-events-none"></div>
           </div>
         </div>
       </section>
 
       <!-- 02 Featured -->
-      <section class="featured">
-        <div class="featured-head">
-          <h2>The work we're <em>most proud of</em></h2>
-          <p>Three recent projects — one finished, one just finished, one on site as we type.</p>
+      <section class="max-w-content mx-auto mt-48 md:mt-52 px-8">
+        <div class="text-center mb-12">
+          <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-[clamp(32px,4vw,52px)] leading-[1.05] tracking-tight text-ink mb-4">
+            The work we're <span class="text-red">most proud of</span>
+          </h2>
+          <p class="max-w-[60ch] mx-auto text-ink-soft text-base leading-relaxed">
+            Three recent projects — one finished, one just finished, one on site as we type.
+          </p>
         </div>
-        <div class="featured-cards">
-          <article class="fcard featured-img" :style="{ backgroundImage: `url(${imgSrc(featured[0])})` }">
-            <div>
-              <div class="meta">{{ featured[0].type }} · {{ featured[0].city }}</div>
-              <h3><a href="#archive" @click.prevent="open = featured[0]">{{ featured[0].title }}</a></h3>
-              <div class="stat">Completed {{ featured[0].completed }}</div>
-              <p>{{ featured[0].note }}</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] gap-[18px]">
+          <!-- Card 1: image card -->
+          <article
+            class="relative bg-white border border-rule p-7 min-h-[280px] flex flex-col justify-between overflow-hidden transition-transform duration-250 hover:-translate-y-[3px] bg-cover bg-center text-white"
+            :style="{ backgroundImage: `url(${imgSrc(featured[0])})` }"
+          >
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/55 from-0% to-ink/10 to-100% pointer-events-none"></div>
+            <div class="relative z-10">
+              <div class="font-mono text-[10.5px] tracking-[0.16em] uppercase text-white/80 mb-2">{{ featured[0].type }} · {{ featured[0].city }}</div>
+              <h3 class="font-display font-bold text-[22px] leading-[1.15] tracking-tight mb-3">
+                <a href="#archive" class="text-white underline underline-offset-4 decoration-white/40 hover:decoration-white" @click.prevent="open = featured[0]">{{ featured[0].title }}</a>
+              </h3>
+              <div class="font-display font-bold text-lg mt-3 mb-1.5">Completed {{ featured[0].completed }}</div>
+              <p class="text-[13.5px] leading-relaxed text-white/85 mb-4">{{ featured[0].note }}</p>
             </div>
-            <a class="more" href="#archive" @click.prevent="open = featured[0]">Read the file →</a>
+            <a class="relative z-10 self-start text-[13px] font-semibold bg-white/20 text-white px-4 py-2.5 rounded-full no-underline inline-flex items-center gap-2 backdrop-blur-sm hover:bg-white/30 transition-colors cursor-pointer" href="#archive" @click.prevent="open = featured[0]">Read the file →</a>
           </article>
-          <article class="fcard red">
+          <!-- Card 2: red -->
+          <article class="relative bg-red text-white border border-red p-7 min-h-[280px] flex flex-col justify-between overflow-hidden transition-transform duration-250 hover:-translate-y-[3px]">
             <div>
-              <div class="meta">{{ featured[1].type }} · {{ featured[1].city }}</div>
-              <h3><a href="#archive" @click.prevent="open = featured[1]">{{ featured[1].title }}</a></h3>
-              <p style="margin-top: 14px">{{ featured[1].note }}</p>
+              <div class="font-mono text-[10.5px] tracking-[0.16em] uppercase text-white/85 mb-2">{{ featured[1].type }} · {{ featured[1].city }}</div>
+              <h3 class="font-display font-bold text-[22px] leading-[1.15] tracking-tight mb-3">
+                <a href="#archive" class="text-white underline underline-offset-4 decoration-white/40" @click.prevent="open = featured[1]">{{ featured[1].title }}</a>
+              </h3>
+              <p class="text-[13.5px] leading-relaxed text-white/85 mt-3.5 mb-4">{{ featured[1].note }}</p>
             </div>
-            <a class="more" href="#archive" @click.prevent="open = featured[1]">Read the file →</a>
+            <a class="self-start text-[13px] font-semibold bg-white/18 text-white px-4 py-2.5 rounded-full no-underline inline-flex items-center gap-2 hover:bg-white/28 transition-colors cursor-pointer" href="#archive" @click.prevent="open = featured[1]">Read the file →</a>
           </article>
-          <article class="fcard navy">
+          <!-- Card 3: navy -->
+          <article class="relative bg-navy text-white border border-navy p-7 min-h-[280px] flex flex-col justify-between overflow-hidden transition-transform duration-250 hover:-translate-y-[3px]">
             <div>
-              <div class="meta">{{ featured[2].type }} · ON SITE</div>
-              <h3><a href="#archive" @click.prevent="open = featured[2]">{{ featured[2].title }}</a></h3>
-              <p style="margin-top: 14px">{{ featured[2].note }}</p>
+              <div class="font-mono text-[10.5px] tracking-[0.16em] uppercase text-white/70 mb-2">{{ featured[2].type }} · ON SITE</div>
+              <h3 class="font-display font-bold text-[22px] leading-[1.15] tracking-tight mb-3">
+                <a href="#archive" class="text-white underline underline-offset-4 decoration-white/30" @click.prevent="open = featured[2]">{{ featured[2].title }}</a>
+              </h3>
+              <p class="text-[13.5px] leading-relaxed text-white/75 mt-3.5 mb-4">{{ featured[2].note }}</p>
             </div>
-            <a class="more" href="#archive" @click.prevent="open = featured[2]">Read the file →</a>
+            <a class="self-start text-[13px] font-semibold bg-white/12 text-white px-4 py-2.5 rounded-full no-underline inline-flex items-center gap-2 hover:bg-white/20 transition-colors cursor-pointer" href="#archive" @click.prevent="open = featured[2]">Read the file →</a>
           </article>
         </div>
       </section>
 
       <!-- 03 Pitch -->
-      <section class="pitch">
-        <div class="pitch-corner" aria-hidden></div>
-        <div class="pitch-grid">
+      <section class="relative max-w-content mx-auto mt-24 px-8">
+        <div class="absolute -top-[30px] left-8 w-[150px] h-[150px] bg-warm-2 clip-corner-tl pointer-events-none" aria-hidden="true"
+          style="background: linear-gradient(135deg, transparent 0%, transparent 30%, rgba(26,47,92,0.06) 30%, rgba(26,47,92,0.06) 50%, transparent 50%), #f1f0eb;">
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-16 items-end relative">
           <div></div>
           <div>
-            <h2>Decisions get made on the building. <em>Not on a spreadsheet.</em></h2>
-            <p>Every site we walk gets a paper survey before a single tool comes out of the truck. Every survey gets a file — and every file stays, whether or not the building does. That's how we estimate, how we restore, and how we remember.</p>
-            <a class="more" href="#archive">How we work →</a>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-[clamp(32px,4.2vw,56px)] leading-[1.02] tracking-tight text-ink mb-5 max-w-[22ch]">
+              Decisions get made on the building. <span class="text-red">Not on a spreadsheet.</span>
+            </h2>
+            <p class="text-base leading-relaxed text-ink-soft max-w-[60ch] mb-7">
+              Every site we walk gets a paper survey before a single tool comes out of the truck. Every survey gets a file — and every file stays, whether or not the building does. That's how we estimate, how we restore, and how we remember.
+            </p>
+            <a class="text-[13px] font-semibold bg-warm-2 text-ink px-5 py-3 rounded-full no-underline inline-flex items-center gap-2" href="#archive">How we work →</a>
           </div>
         </div>
       </section>
 
       <!-- 04 Gallery -->
-      <section class="gallery-section" id="archive">
-        <div class="gallery-head">
+      <section class="max-w-content mx-auto mt-32 px-8 relative" id="archive">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-end mb-8">
           <div>
-            <h2>Every project <em>we've ever touched.</em></h2>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-[clamp(34px,4.6vw,64px)] leading-none tracking-tight text-ink">
+              Every project <span class="text-red">we've ever touched.</span>
+            </h2>
           </div>
         </div>
 
         <!-- Mobile carousel -->
-        <div class="wall-mobile">
+        <div class="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 overscroll-x-contain md:hidden">
           <article
             v-for="p in PROJECTS"
             :key="'m' + p.id"
-            class="tile"
+            class="flex-[0_0_78%] snap-start cursor-pointer"
             @click="open = p"
           >
-            <div class="tile-frame">
-              <img class="tile-img" :src="imgSrc(p)" :alt="p.title" loading="lazy" />
-              <div class="tile-tint"></div>
-              <div class="tile-info">
-                <div class="t">{{ p.title }}</div>
-                <div class="m">
+            <div class="relative overflow-hidden bg-navy aspect-[3/2] shadow-[0_12px_30px_-22px_rgba(15,24,48,0.45)] transition-transform duration-300 ease-masonry">
+              <img class="absolute inset-0 w-full h-full object-cover block transition-transform duration-600 ease-masonry" :src="imgSrc(p)" :alt="p.title" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/55 from-60% to-transparent to-100% pointer-events-none"></div>
+              <div class="absolute left-3.5 right-3.5 bottom-3.5 text-white z-10">
+                <div class="font-display font-bold text-[15px] sm:text-[17px] leading-[1.15] tracking-tight mb-1.5">{{ p.title }}</div>
+                <div class="font-mono text-[10px] tracking-[0.14em] uppercase text-white/75 flex gap-3 items-center">
                   <span>{{ p.year }}</span>
-                  <span class="sep"></span>
+                  <span class="w-[3px] h-[3px] bg-white/50 rounded-full"></span>
                   <span>{{ p.city }}</span>
                 </div>
               </div>
             </div>
           </article>
         </div>
+
         <!-- Desktop masonry -->
-        <div ref="wallRef" class="wall-desktop" :style="{ height: layout.wallHeight + 'px' }">
+        <div ref="wallRef" class="hidden md:block relative w-full" :style="{ height: layout.wallHeight + 'px' }">
           <article
             v-for="t in layout.tiles"
             :key="'d' + t.p.id"
-            class="tile"
+            class="absolute cursor-pointer transition-transform duration-[0.45s] ease-masonry hover:z-5"
             :style="{ width: t.style.width + 'px', transform: t.style.transform }"
             @click="open = t.p"
           >
-            <div class="tile-frame" :style="{ height: t.style._h + 'px' }">
-              <img class="tile-img" :src="imgSrc(t.p)" :alt="t.p.title" loading="lazy" />
-              <div class="tile-tint"></div>
-              <div class="tile-info">
-                <div class="t">{{ t.p.title }}</div>
-                <div class="m">
+            <div
+              class="relative overflow-hidden bg-navy shadow-[0_12px_30px_-22px_rgba(15,24,48,0.45)] transition-all duration-300 ease-masonry hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(15,24,48,0.35),0_12px_24px_-12px_rgba(15,24,48,0.2)]"
+              :style="{ height: t.style._h + 'px' }"
+            >
+              <img class="absolute inset-0 w-full h-full object-cover block transition-transform duration-600 ease-masonry hover:scale-[1.04]" :src="imgSrc(t.p)" :alt="t.p.title" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/55 from-60% to-transparent to-100% pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-250"></div>
+              <div class="absolute left-3.5 right-3.5 bottom-3.5 text-white z-10 opacity-0 translate-y-1.5 hover:opacity-100 hover:translate-y-0 transition-all duration-250">
+                <div class="font-display font-bold text-[17px] leading-[1.15] tracking-tight mb-1.5">{{ t.p.title }}</div>
+                <div class="font-mono text-[10px] tracking-[0.14em] uppercase text-white/75 flex gap-3 items-center">
                   <span>{{ t.p.year }}</span>
-                  <span class="sep"></span>
+                  <span class="w-[3px] h-[3px] bg-white/50 rounded-full"></span>
                   <span>{{ t.p.city }}</span>
                 </div>
               </div>
@@ -127,65 +170,78 @@
       </section>
 
       <!-- 05 Why NGOV -->
-      <section class="why" id="why">
-        <div class="why-inner">
-          <div class="why-top">
+      <section class="mt-32 bg-navy-dark text-white relative overflow-hidden" id="why">
+        <div class="absolute top-0 right-0 w-[40%] h-full pointer-events-none"
+          style="background: linear-gradient(135deg, transparent 0%, transparent 40%, rgba(255,255,255,0.025) 40%, rgba(255,255,255,0.025) 60%, transparent 60%);">
+        </div>
+        <div class="absolute top-0 left-0 w-20 h-20 bg-off-white clip-corner-tl"></div>
+        <div class="max-w-content mx-auto px-8 pt-24 pb-20">
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-16 items-start mb-14">
             <div>
-              <h2>Move projects forward with <em>proactive, informed decisions.</em></h2>
-              <a class="more" href="#contact">Learn more →</a>
+              <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-[clamp(34px,4.4vw,60px)] leading-[1.02] tracking-tight text-white mb-7">
+                Move projects forward with <span class="text-red">proactive, informed decisions.</span>
+              </h2>
+              <a class="text-[13px] font-semibold bg-red text-white px-5 py-3 rounded-full no-underline inline-flex items-center gap-2" href="#contact">Learn more →</a>
             </div>
-            <div class="image">
-              <img src="/img/photo2.jpg" alt="Restoration site" />
+            <div class="relative h-[360px] bg-white overflow-hidden clip-why-img">
+              <img src="/img/photo2.jpg" alt="Restoration site" class="w-full h-full object-cover" />
             </div>
           </div>
-          <div class="why-services">
-            <div class="label">What we build / Eight services</div>
-            <div v-for="s in services" :key="s.title" class="item">
-              <h4>{{ s.title }}</h4>
-              <p>{{ s.body }}</p>
-              <a href="#contact">Learn more →</a>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-12 border-t border-white/12">
+            <div class="font-mono text-[10.5px] tracking-[0.2em] uppercase text-white/55 mb-8 col-span-full">What we build / Eight services</div>
+            <div v-for="s in services" :key="s.title" class="pt-6 border-t border-white/10">
+              <h4 class="font-display font-bold text-lg tracking-tight text-white mb-3">{{ s.title }}</h4>
+              <p class="text-sm leading-relaxed text-white/65 mb-4">{{ s.body }}</p>
+              <a class="text-[12.5px] font-semibold text-red no-underline inline-flex items-center gap-1.5" href="#contact">Learn more →</a>
             </div>
           </div>
         </div>
       </section>
 
       <!-- 06 About -->
-      <section class="contention" id="about">
-        <div class="contention-left">
-          <h2>Exceptional quality, <em>in every detail.</em></h2>
-          <div class="signature">
-            <strong>NGOV Construct</strong><br>
+      <section class="max-w-content mx-auto px-8 pt-32 grid grid-cols-1 lg:grid-cols-2 gap-20 items-start" id="about">
+        <div>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-[clamp(34px,4.2vw,56px)] leading-[1.02] tracking-tight text-ink mb-8">
+            Exceptional quality, <span class="text-red">in every detail.</span>
+          </h2>
+          <div class="text-sm text-ink-soft mt-8 pt-6 border-t border-rule max-w-[28ch] leading-relaxed">
+            <strong class="text-ink font-semibold">NGOV Construct</strong><br>
             Builders, carpenters &amp; tradespeople
           </div>
         </div>
-        <div class="contention-right">
-          <p class="lead">
+        <div class="text-base leading-[1.75] text-ink-2">
+          <p class="font-display font-semibold text-xl leading-[1.45] text-ink tracking-tight mb-5">
             At NGOV Construct, we pride ourselves on delivering exceptional quality and craftsmanship in every project we undertake — from a single deck to a full first-floor addition.
           </p>
-          <p>
-            We are committed to turning your vision into reality. That commitment starts with how we listen — to what the brief actually is, what the site allows, and what the budget will sustain — and it carries through to the details no one sees once the job is finished. Every cut, joint, and fixing is meticulously crafted to meet the highest standards. The work behind the wall has to be as good as the work in front of it.
-          </p>
-          <p>
-            Our focus is on durability and aesthetics in equal measure. A project should look as considered the day it's handed over as it does ten years later, and the choices we make in materials, framing, and finishes are made with that timeline in mind. We use what holds up, we build the way it should be built, and we don't take shortcuts that cost the client later.
-          </p>
-          <p>
-            More than anything, we are in the business of building lasting relationships with our clients. Most of our work comes from referrals, return clients, and the families who lived through their last renovation with us and asked us back for the next one. That is not an accident. It is the result of unwavering dedication to excellence, clear communication on site, and a small team of tradespeople who care about what they put their name to.
-          </p>
-          <p>
-            If you have a project in mind — whether it's framing, formwork, a granny flat, a new pergola, or something we haven't built yet — we'd like to hear about it.
-          </p>
+          <p class="mb-5">We are committed to turning your vision into reality. That commitment starts with how we listen — to what the brief actually is, what the site allows, and what the budget will sustain — and it carries through to the details no one sees once the job is finished. Every cut, joint, and fixing is meticulously crafted to meet the highest standards. The work behind the wall has to be as good as the work in front of it.</p>
+          <p class="mb-5">Our focus is on durability and aesthetics in equal measure. A project should look as considered the day it's handed over as it does ten years later, and the choices we make in materials, framing, and finishes are made with that timeline in mind. We use what holds up, we build the way it should be built, and we don't take shortcuts that cost the client later.</p>
+          <p class="mb-5">More than anything, we are in the business of building lasting relationships with our clients. Most of our work comes from referrals, return clients, and the families who lived through their last renovation with us and asked us back for the next one. That is not an accident. It is the result of unwavering dedication to excellence, clear communication on site, and a small team of tradespeople who care about what they put their name to.</p>
+          <p>If you have a project in mind — whether it's framing, formwork, a granny flat, a new pergola, or something we haven't built yet — we'd like to hear about it.</p>
         </div>
       </section>
 
       <!-- 08 CTA -->
-      <section class="cta-block" id="contact">
-        <div class="bg"><img src="/img/photo9.jpg" alt="" /></div>
-        <div class="cta-inner">
-          <div class="pre">A small practice, paying attention</div>
-          <h2>Tell us about your project. <em>We'll come look at it.</em></h2>
-          <div class="cta-row">
-            <button class="btn-primary large ghost" @click="openInquiry">Start your project<span class="ico">&#8594;</span></button>
-            <span class="or-call">Or call <a href="tel:+14135550147">(413) 555 — 0147</a></span>
+      <section class="relative mt-32 bg-navy-deep text-white overflow-hidden" id="contact">
+        <div class="absolute inset-0 opacity-45" style="filter: grayscale(0.6);">
+          <img src="/img/photo9.jpg" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[rgba(8,18,42,0.85)] to-[rgba(8,18,42,0.6)]"></div>
+        <div class="relative z-[2] max-w-[880px] mx-auto px-8 pt-32 pb-32 text-center">
+          <div class="font-mono text-[11px] tracking-[0.22em] uppercase text-white/70 mb-6">A small practice, paying attention</div>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-[clamp(34px,4.6vw,60px)] leading-[1.05] tracking-tight text-white mb-9">
+            Tell us about your project. <span class="text-red">We'll come look at it.</span>
+          </h2>
+          <div class="flex flex-wrap items-center justify-center gap-6">
+            <button
+              class="inline-flex items-center gap-3 bg-white/8 text-white border border-white/20 rounded-full py-3.5 pl-6 pr-2 font-sans font-semibold text-base cursor-pointer no-underline backdrop-blur-sm transition-colors hover:bg-white/16"
+              @click="openInquiry"
+            >
+              Start your project
+              <span class="w-[42px] h-[42px] bg-red text-white rounded-full grid place-items-center font-bold text-base">→</span>
+            </button>
+            <span class="font-mono text-[11px] tracking-[0.16em] uppercase text-white/70">
+              Or call <a href="tel:+141****0147" class="text-white underline underline-offset-[2px] decoration-white/30 ml-2">(413) 555 — 0147</a>
+            </span>
           </div>
         </div>
       </section>
@@ -194,37 +250,39 @@
     <AppFooter />
 
     <!-- Project detail modal -->
-    <div v-if="open" class="modal-scrim" @click="open = null">
-      <div class="modal" @click.stop>
-        <div class="modal-img" :class="{ lost: open.status === 'lost' }">
-          <img :src="imgSrc(open)" :alt="open.title" />
-          <div class="tint"></div>
-          <div class="tile-cut"></div>
-          <div class="tile-cut2"></div>
-          <div class="tile-plate">№ {{ plate(open) }}</div>
-          <div v-if="open.status === 'lost'" class="tile-status lost">In Memoriam</div>
-          <div v-else-if="open.status === 'active'" class="tile-status active">On Site</div>
+    <div v-if="open" class="fixed inset-0 bg-[rgba(8,18,42,0.78)] backdrop-blur-sm z-50 flex items-center justify-center p-10 animate-fade-in" @click="open = null">
+      <div class="bg-off-white max-w-[1100px] w-full max-h-[90vh] grid grid-cols-1 md:grid-cols-[1.1fr_1fr] overflow-hidden animate-rise" @click.stop>
+        <div class="relative min-h-[240px] md:min-h-[580px] overflow-hidden bg-navy" :class="{ 'grayscale-[0.6] contrast-[1.05]': open.status === 'lost' }">
+          <img :src="imgSrc(open)" :alt="open.title" class="w-full h-full object-cover absolute inset-0" />
+          <div class="absolute inset-0" :class="open.status === 'lost' ? 'bg-gradient-to-t from-[rgba(120,30,15,0.7)] to-[rgba(214,69,47,0.1)]' : 'bg-gradient-to-t from-ink/50 to-ink/10'"></div>
+          <div class="absolute top-0 left-[-2%] w-[28%] h-full bg-white/16 clip-tile-cut-l mix-blend-overlay pointer-events-none"></div>
+          <div class="absolute top-0 right-[-2%] w-[12%] h-1/2 bg-white/10 clip-tile-cut-r mix-blend-overlay pointer-events-none"></div>
+          <div class="absolute top-3.5 right-3.5 font-mono text-[9.5px] tracking-[0.16em] text-white/85 px-2 py-1 border border-white/30 uppercase bg-ink/30 backdrop-blur-sm">№ {{ plate(open) }}</div>
+          <div v-if="open.status === 'lost'" class="absolute top-3.5 left-3.5 font-mono text-[9.5px] tracking-[0.18em] uppercase px-2 py-1 text-white bg-red backdrop-blur-sm">In Memoriam</div>
+          <div v-else-if="open.status === 'active'" class="absolute top-3.5 left-3.5 font-mono text-[9.5px] tracking-[0.18em] uppercase px-2 py-1 text-white bg-[#c87b2a] backdrop-blur-sm">On Site</div>
         </div>
-        <div class="modal-body">
-          <button class="close" aria-label="Close" @click="open = null">×</button>
-          <div class="plate">File № {{ plate(open) }} / {{ open.type }}</div>
-          <h3>{{ open.title }}</h3>
-          <div class="subline">
+        <div class="p-7 md:p-12 overflow-y-auto relative">
+          <button class="absolute top-5 right-5 bg-white border border-rule w-9 h-9 rounded-full text-lg cursor-pointer text-ink grid place-items-center hover:bg-ink hover:text-white transition-colors" aria-label="Close" @click="open = null">×</button>
+          <div class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-red mb-4">File № {{ plate(open) }} / {{ open.type }}</div>
+          <h3 class="font-display font-bold text-[36px] leading-[1.05] tracking-tight text-ink mb-3">{{ open.title }}</h3>
+          <div class="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-soft pb-5.5 border-b border-rule">
             {{ open.city }} · Built {{ open.year }}<template v-if="open.completed"> · Completed {{ open.completed }}</template><template v-if="open.lost"> · Lost {{ open.lost }}</template>
           </div>
-          <dl class="spec">
-            <dt>Status</dt>
-            <dd>{{ open.status === 'lost' ? 'No longer extant' : open.status === 'active' ? 'Active restoration' : 'Standing' }}</dd>
-            <dt>Category</dt>
-            <dd>{{ open.tag }}</dd>
-            <dt>Materials</dt>
-            <dd>{{ open.materials }}</dd>
-            <dt>Scope</dt>
-            <dd>{{ open.scope }}</dd>
-            <template v-if="open.lost"><dt>Year lost</dt><dd>{{ open.lost }}</dd></template>
-            <template v-if="open.completed"><dt>Completed</dt><dd>{{ open.completed }}</dd></template>
+          <dl class="mt-6 grid grid-cols-[110px_1fr] gap-3 gap-x-[18px] text-[13.5px]">
+            <dt class="font-mono text-[10px] tracking-[0.18em] uppercase text-ink-soft pt-0.5">Status</dt>
+            <dd class="m-0 text-ink-2">{{ open.status === 'lost' ? 'No longer extant' : open.status === 'active' ? 'Active restoration' : 'Standing' }}</dd>
+            <dt class="font-mono text-[10px] tracking-[0.18em] uppercase text-ink-soft pt-0.5">Category</dt>
+            <dd class="m-0 text-ink-2">{{ open.tag }}</dd>
+            <dt class="font-mono text-[10px] tracking-[0.18em] uppercase text-ink-soft pt-0.5">Materials</dt>
+            <dd class="m-0 text-ink-2">{{ open.materials }}</dd>
+            <dt class="font-mono text-[10px] tracking-[0.18em] uppercase text-ink-soft pt-0.5">Scope</dt>
+            <dd class="m-0 text-ink-2">{{ open.scope }}</dd>
+            <template v-if="open.lost"><dt class="font-mono text-[10px] tracking-[0.18em] uppercase text-ink-soft pt-0.5">Year lost</dt><dd class="m-0 text-ink-2">{{ open.lost }}</dd></template>
+            <template v-if="open.completed"><dt class="font-mono text-[10px] tracking-[0.18em] uppercase text-ink-soft pt-0.5">Completed</dt><dd class="m-0 text-ink-2">{{ open.completed }}</dd></template>
           </dl>
-          <div class="note">{{ open.note }}</div>
+          <div class="mt-7 p-5 bg-white border-l-[3px] border-red text-[15px] leading-relaxed text-ink italic">
+            {{ open.note }}
+          </div>
         </div>
       </div>
     </div>
@@ -406,436 +464,3 @@ onBeforeUnmount(() => {
   if (import.meta.client) document.body.style.overflow = ''
 })
 </script>
-
-<style scoped>
-em { font-style: normal; }
-
-/* --- hero --- */
-.hero {
-  position: relative;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 32px 0;
-  overflow: hidden;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(320px, 1fr) 1.15fr;
-  gap: 48px;
-  align-items: stretch;
-  min-height: 540px;
-}
-@media (max-width: 1100px) {
-  .hero-grid { grid-template-columns: 1fr; min-height: unset; }
-  .hero-right { min-height: 280px; }
-}
-.hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 24px 0 40px;
-}
-.hero h1 {
-  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
-  font-weight: 700;
-  font-size: clamp(32px, 5.5vw, 84px);
-  line-height: 0.96;
-  letter-spacing: -0.025em;
-  margin: 0 0 20px;
-  color: #0f1830;
-  text-wrap: balance;
-}
-.hero h1 em { color: #E42929; }
-.hero-desc {
-  font-size: 17px;
-  line-height: 1.6;
-  color: #5b6373;
-  max-width: 44ch;
-  margin: 0 0 36px;
-  text-wrap: pretty;
-}
-.hero-right {
-  position: relative;
-  overflow: hidden;
-  background: #0F2240;
-  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%, 0 14%);
-}
-.hero-right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.hero-right::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(26,47,92,0.0) 50%, rgba(26,47,92,0.18) 100%);
-}
-.hero-tri { position: absolute; pointer-events: none; background: rgba(255,255,255,0.18); mix-blend-mode: overlay; }
-.hero-tri.a { top: 0; left: 12%; width: 18%; height: 100%; clip-path: polygon(0 0, 100% 0, 0 100%); background: rgba(255,255,255,0.25); }
-.hero-tri.b { top: 0; left: 32%; width: 9%; height: 70%; clip-path: polygon(0 0, 100% 0, 0 100%); background: rgba(255,255,255,0.12); }
-
-/* --- primary CTA button --- */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: #E42929;
-  color: #fff;
-  border: 0;
-  border-radius: 999px;
-  padding: 14px 8px 14px 24px;
-  font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .2s, transform .2s;
-}
-.btn-primary:hover { background: #b81e1e; }
-.btn-primary .ico {
-  width: 36px; height: 36px;
-  background: #fff; color: #E42929;
-  border-radius: 50%;
-  display: grid; place-items: center;
-  font-weight: 700; font-size: 16px;
-}
-.btn-primary.large { padding: 18px 10px 18px 30px; font-size: 16px; }
-.btn-primary.large .ico { width: 42px; height: 42px; }
-.btn-primary.ghost {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
-}
-.btn-primary.ghost:hover { background: rgba(255,255,255,0.16); }
-.btn-primary.ghost .ico { background: #E42929; color: #fff; }
-
-.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
-.cta-row .or-call {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #5b6373;
-}
-.cta-row .or-call a {
-  color: #0f1830; text-decoration: none; border-bottom: 1px solid #d3cfc3; padding-bottom: 2px; margin-left: 8px;
-}
-.cta-row .or-call a:hover { border-color: #E42929; color: #E42929; }
-
-/* --- featured --- */
-.featured { max-width: 1400px; margin: 200px auto 0; padding: 0 32px; }
-.featured-head { text-align: center; margin-bottom: 48px; }
-.featured-head h2 {
-  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
-  font-weight: 700; font-size: clamp(32px, 4vw, 52px);
-  line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 16px;
-}
-.featured-head h2 em { color: #E42929; }
-.featured-head p { max-width: 60ch; margin: 0 auto; color: #5b6373; font-size: 16px; line-height: 1.6; text-wrap: pretty; }
-.featured-cards { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 18px; }
-.fcard {
-  position: relative; background: #fff; border: 1px solid #d3cfc3;
-  padding: 28px 28px 24px; min-height: 280px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  overflow: hidden; transition: transform .25s;
-}
-.fcard:hover { transform: translateY(-3px); }
-.fcard .meta {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #5b6373; margin-bottom: 8px;
-}
-.fcard h3 {
-  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
-  font-weight: 700; font-size: 22px; line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 12px; text-wrap: balance;
-}
-.fcard h3 a { color: inherit; text-decoration: underline; text-decoration-color: #d3cfc3; text-underline-offset: 4px; text-decoration-thickness: 1px; cursor: pointer; }
-.fcard .stat { font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: 18px; margin: 12px 0 6px; }
-.fcard p { font-size: 13.5px; line-height: 1.5; color: #5b6373; margin: 0 0 16px; text-wrap: pretty; }
-.fcard .more {
-  align-self: flex-start; font-size: 13px; font-weight: 600; background: #f1f0eb; color: #0f1830;
-  padding: 10px 16px; border-radius: 999px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background .2s; cursor: pointer;
-}
-.fcard .more:hover { background: #e5e3dc; }
-.fcard.featured-img { background-size: cover; background-position: center; color: #fff; }
-.fcard.featured-img::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,24,48,0.1) 0%, rgba(15,24,48,0.55) 100%); }
-.fcard.featured-img > * { position: relative; z-index: 1; }
-.fcard.featured-img .meta { color: rgba(255,255,255,0.8); }
-.fcard.featured-img h3 a { color: #fff; text-decoration-color: rgba(255,255,255,0.4); }
-.fcard.featured-img p { color: rgba(255,255,255,0.85); }
-.fcard.featured-img .more { background: rgba(255,255,255,0.2); color: #fff; backdrop-filter: blur(6px); }
-.fcard.featured-img .more:hover { background: rgba(255,255,255,0.3); }
-.fcard.red { background: #E42929; color: #fff; border-color: #E42929; }
-.fcard.red .meta { color: rgba(255,255,255,0.85); }
-.fcard.red h3 a { color: #fff; text-decoration-color: rgba(255,255,255,0.4); }
-.fcard.red p { color: rgba(255,255,255,0.85); }
-.fcard.red .more { background: rgba(255,255,255,0.18); color: #fff; }
-.fcard.red .more:hover { background: rgba(255,255,255,0.28); }
-.fcard.navy { background: #0F2240; color: #fff; border-color: #0F2240; }
-.fcard.navy .meta { color: rgba(255,255,255,0.7); }
-.fcard.navy h3 a { color: #fff; text-decoration-color: rgba(255,255,255,0.3); }
-.fcard.navy p { color: rgba(255,255,255,0.75); }
-.fcard.navy .more { background: rgba(255,255,255,0.12); color: #fff; }
-.fcard.navy .more:hover { background: rgba(255,255,255,0.2); }
-
-/* --- pitch --- */
-.pitch { position: relative; max-width: 1400px; margin: 96px auto 0; padding: 0 32px; }
-.pitch-corner {
-  position: absolute; top: -30px; left: 32px; width: 150px; height: 150px;
-  background: linear-gradient(135deg, transparent 0%, transparent 30%, rgba(26,47,92,0.06) 30%, rgba(26,47,92,0.06) 50%, transparent 50%), #f1f0eb;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-}
-.pitch-grid { display: grid; grid-template-columns: 200px 1fr; gap: 64px; align-items: end; position: relative; }
-.pitch h2 {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: clamp(32px, 4.2vw, 56px);
-  line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance; max-width: 22ch;
-}
-.pitch h2 em { color: #E42929; }
-.pitch p { font-size: 16px; line-height: 1.65; color: #5b6373; max-width: 60ch; margin: 0 0 28px; text-wrap: pretty; }
-.pitch .more { font-size: 13px; font-weight: 600; background: #f1f0eb; color: #0f1830; padding: 12px 20px; border-radius: 999px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-
-/* --- gallery --- */
-.gallery-section { max-width: 1400px; margin: 120px auto 0; padding: 0 32px 0; position: relative; }
-.gallery-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 32px; }
-.gallery-head h2 {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: clamp(34px, 4.6vw, 64px);
-  line-height: 1.0; letter-spacing: -0.025em; margin: 0;
-}
-.gallery-head h2 em { color: #E42929; }
-.gallery-head .note { font-size: 16px; line-height: 1.6; color: #5b6373; max-width: 42ch; text-wrap: pretty; }
-
-/* --- mobile carousel --- */
-.wall-mobile {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-  padding-bottom: 8px;
-  overscroll-behavior-x: contain;
-}
-.wall-mobile > .tile {
-  flex: 0 0 78%;
-  scroll-snap-align: start;
-}
-.wall-mobile .tile-frame {
-  aspect-ratio: 3 / 2;
-  width: 100%;
-}
-
-/* --- desktop masonry --- */
-.wall-desktop {
-  display: none;
-  position: relative;
-  width: 100%;
-}
-@media (min-width: 480px) {
-  .wall-mobile { display: none; }
-  .wall-desktop { display: block; }
-}
-.wall-desktop > .tile {
-  position: absolute;
-  transition: transform 0.45s cubic-bezier(.2,.7,.2,1), opacity .3s;
-  cursor: pointer;
-}
-.wall-desktop > .tile:hover { z-index: 5; }
-
-/* --- shared tile styles --- */
-.tile { cursor: pointer; }
-.tile:hover .tile-frame { transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(15,24,48,0.35), 0 12px 24px -12px rgba(15,24,48,0.2); }
-.tile:hover .tile-img { transform: scale(1.04); }
-.tile-frame {
-  position: relative;
-  overflow: hidden;
-  background: #0F2240;
-  transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s;
-  box-shadow: 0 12px 30px -22px rgba(15,24,48,0.45);
-}
-.tile-img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(.2,.7,.2,1);
-  display: block;
-}
-.tile-tint {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(15,24,48,0) 60%, rgba(15,24,48,0.55) 100%);
-  pointer-events: none; opacity: 0; transition: opacity .25s;
-}
-.tile:hover .tile-tint { opacity: 1; }
-.tile-info {
-  position: absolute; left: 14px; right: 14px; bottom: 14px; color: #fff; z-index: 2;
-  opacity: 0; transform: translateY(6px); transition: opacity .25s, transform .3s;
-}
-.tile:hover .tile-info { opacity: 1; transform: none; }
-
-@media (hover: none) and (pointer: coarse) {
-  .tile-tint { opacity: 1; }
-  .tile-info { opacity: 1; transform: none; }
-  .tile-info .t { font-size: 15px; }
-}
-.tile-info .t {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: 17px; line-height: 1.15;
-  letter-spacing: -0.01em; margin: 0 0 6px; text-wrap: balance;
-}
-.tile-info .m {
-  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: rgba(255,255,255,0.75); display: flex; gap: 12px; align-items: center;
-}
-.tile-info .m .sep { width: 3px; height: 3px; background: rgba(255,255,255,0.5); border-radius: 50%; }
-
-/* --- why --- */
-.why { margin: 120px 0 0; background: #091a32; color: #fff; position: relative; overflow: hidden; }
-.why::before {
-  content: ""; position: absolute; top: -1px; right: 0; width: 40%; height: 100%;
-  background: linear-gradient(135deg, transparent 0%, transparent 40%, rgba(255,255,255,0.025) 40%, rgba(255,255,255,0.025) 60%, transparent 60%);
-  pointer-events: none;
-}
-.why::after { content: ""; position: absolute; top: 0; left: 0; width: 80px; height: 80px; background: #fdfdfd; clip-path: polygon(0 0, 100% 0, 0 100%); }
-.why-inner { max-width: 1400px; margin: 0 auto; padding: 96px 32px 80px; }
-.why-top { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; margin-bottom: 56px; }
-.why-top h2 {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 60px);
-  line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 28px; color: #fff; text-wrap: balance;
-}
-.why-top h2 em { color: #E42929; }
-.why-top .more {
-  font-size: 13px; font-weight: 600; background: #E42929; color: #fff; padding: 12px 22px;
-  border-radius: 999px; text-decoration: none; display: inline-flex; gap: 8px; align-items: center;
-}
-.why-top .image { position: relative; height: 360px; background: #fff; overflow: hidden; clip-path: polygon(0 0, 92% 0, 100% 14%, 100% 100%, 8% 100%, 0 86%); }
-.why-top .image img { width: 100%; height: 100%; object-fit: cover; }
-.why-services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.12); }
-.why-services .label {
-  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 32px; grid-column: 1 / -1;
-}
-.why-services .item { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
-.why-services .item h4 {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin: 0 0 12px; color: #fff;
-}
-.why-services .item p { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.65); margin: 0 0 16px; text-wrap: pretty; }
-.why-services .item a {
-  font-size: 12.5px; font-weight: 600; color: #E42929; text-decoration: none; letter-spacing: 0.02em;
-  display: inline-flex; gap: 6px; align-items: center;
-}
-
-/* --- about / contention --- */
-.contention { max-width: 1400px; margin: 0 auto; padding: 120px 32px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.contention-left h2 {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: clamp(34px, 4.2vw, 56px);
-  line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 32px; text-wrap: balance;
-}
-.contention-left h2 em { color: #E42929; }
-.contention-left .signature {
-  font-size: 14px; color: #5b6373; margin-top: 32px; padding-top: 24px; border-top: 1px solid #d3cfc3; max-width: 28ch; line-height: 1.6;
-}
-.contention-left .signature strong { color: #0f1830; font-weight: 600; }
-.contention-right { font-size: 16px; line-height: 1.75; color: #2a3142; text-wrap: pretty; }
-.contention-right p { margin: 0 0 1.3em; }
-.contention-right p.lead {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 600; font-size: 20px; line-height: 1.45; color: #0f1830; letter-spacing: -0.01em;
-}
-
-/* --- cta block --- */
-.cta-block { position: relative; margin: 120px 0 0; background: #051022; color: #fff; overflow: hidden; }
-.cta-block .bg { position: absolute; inset: 0; opacity: 0.45; filter: grayscale(0.6); }
-.cta-block .bg img { width: 100%; height: 100%; object-fit: cover; }
-.cta-block::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,18,42,0.6) 0%, rgba(8,18,42,0.85) 100%); }
-.cta-inner { position: relative; z-index: 2; max-width: 880px; margin: 0 auto; padding: 120px 32px; text-align: center; }
-.cta-inner .pre {
-  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 24px;
-}
-.cta-inner h2 {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: clamp(34px, 4.6vw, 60px);
-  line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 36px; color: #fff; text-wrap: balance;
-}
-.cta-inner h2 em { color: #E42929; }
-.cta-block .cta-row { justify-content: center; }
-.cta-block .cta-row .or-call { color: rgba(255,255,255,0.7); }
-.cta-block .cta-row .or-call a { color: #fff; border-bottom-color: rgba(255,255,255,0.3); }
-
-/* --- detail modal --- */
-.modal-scrim {
-  position: fixed; inset: 0; background: rgba(8,18,42,0.78); backdrop-filter: blur(6px); z-index: 50;
-  display: flex; align-items: center; justify-content: center; padding: 40px; animation: fade 0.25s ease;
-}
-@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-.modal {
-  background: #fdfdfd; max-width: 1100px; width: 100%; max-height: 90vh; display: grid;
-  grid-template-columns: 1.1fr 1fr; overflow: hidden; animation: rise 0.35s cubic-bezier(.2,.7,.2,1);
-}
-@keyframes rise { from { transform: translateY(18px); opacity: 0; } to { transform: none; opacity: 1; } }
-.modal-img { position: relative; min-height: 580px; overflow: hidden; background: #0F2240; }
-.modal-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-.modal-img .tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,24,48,0.1) 0%, rgba(15,24,48,0.5) 100%); }
-.modal-img.lost img { filter: grayscale(0.6) contrast(1.05); }
-.modal-img.lost .tint { background: linear-gradient(180deg, rgba(214,69,47,0.1) 0%, rgba(120,30,15,0.7) 100%); }
-.tile-cut {
-  position: absolute; top: 0; left: -2%; width: 28%; height: 100%;
-  background: rgba(255,255,255,0.16); clip-path: polygon(0 0, 100% 0, 0 100%); mix-blend-mode: overlay; pointer-events: none;
-}
-.tile-cut2 {
-  position: absolute; top: 0; right: -2%; width: 12%; height: 50%;
-  background: rgba(255,255,255,0.1); clip-path: polygon(100% 0, 100% 100%, 0 0); mix-blend-mode: overlay; pointer-events: none;
-}
-.tile-plate {
-  position: absolute; top: 14px; right: 14px; font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 9.5px; letter-spacing: 0.16em; color: rgba(255,255,255,0.85); padding: 4px 8px;
-  border: 1px solid rgba(255,255,255,0.3); text-transform: uppercase; background: rgba(15,24,48,0.3); backdrop-filter: blur(8px);
-}
-.tile-status {
-  position: absolute; top: 14px; left: 14px; font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; padding: 4px 8px; color: #fff;
-  background: rgba(15,24,48,0.6); backdrop-filter: blur(8px);
-}
-.tile-status.lost { background: #E42929; }
-.tile-status.active { background: #c87b2a; }
-.modal-body { padding: 48px; overflow-y: auto; position: relative; }
-.modal-body .close {
-  position: absolute; top: 20px; right: 20px; background: #fff; border: 1px solid #d3cfc3;
-  width: 36px; height: 36px; border-radius: 50%; font-size: 18px; cursor: pointer; color: #0f1830; display: grid; place-items: center;
-}
-.modal-body .close:hover { background: #0f1830; color: #fff; }
-.modal-body .plate {
-  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #E42929; margin-bottom: 16px;
-}
-.modal-body h3 {
-  font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: 36px; line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 12px; text-wrap: balance;
-}
-.modal-body .subline {
-  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: #5b6373; padding-bottom: 22px; border-bottom: 1px solid #d3cfc3;
-}
-.modal-body .spec { margin-top: 24px; display: grid; grid-template-columns: 110px 1fr; gap: 12px 18px; font-size: 13.5px; }
-.modal-body .spec dt {
-  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5b6373; padding-top: 3px;
-}
-.modal-body .spec dd { margin: 0; color: #2a3142; }
-.modal-body .note {
-  margin-top: 28px; padding: 20px 22px; background: #fff; border-left: 3px solid #E42929;
-  font-size: 15px; line-height: 1.6; color: #0f1830; text-wrap: pretty; font-style: italic;
-}
-
-/* --- responsive --- */
-@media (max-width: 1100px) {
-  .featured-cards { grid-template-columns: 1fr 1fr; }
-  .featured-cards .fcard:first-child { grid-column: 1 / -1; }
-  .why-top, .contention { grid-template-columns: 1fr; }
-}
-@media (max-width: 720px) {
-  .hero { padding: 16px 16px 0; }
-  .hero-left { padding: 16px 0 24px; }
-  .hero-desc { font-size: 15px; margin-bottom: 24px; }
-  .featured-cards { grid-template-columns: 1fr; }
-  .why-services { grid-template-columns: 1fr 1fr; }
-  .gallery-head { grid-template-columns: 1fr; }
-  .pitch-grid { grid-template-columns: 1fr; gap: 24px; }
-  .pitch-corner { left: 20px; }
-  .modal { grid-template-columns: 1fr; }
-  .modal-img { min-height: 240px; }
-  .modal-body { padding: 28px 24px; }
-}
-</style>
