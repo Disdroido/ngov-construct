@@ -425,6 +425,10 @@ em { font-style: normal; }
   align-items: stretch;
   min-height: 540px;
 }
+@media (max-width: 1100px) {
+  .hero-grid { grid-template-columns: 1fr; min-height: unset; }
+  .hero-right { min-height: 280px; }
+}
 .hero-left {
   display: flex;
   flex-direction: column;
@@ -434,10 +438,10 @@ em { font-style: normal; }
 .hero h1 {
   font-family: 'Poppins', 'Inter', system-ui, sans-serif;
   font-weight: 700;
-  font-size: clamp(44px, 5.5vw, 84px);
+  font-size: clamp(32px, 5.5vw, 84px);
   line-height: 0.96;
   letter-spacing: -0.025em;
-  margin: 0 0 28px;
+  margin: 0 0 20px;
   color: #0f1830;
   text-wrap: balance;
 }
@@ -817,14 +821,14 @@ em { font-style: normal; }
 
 /* --- responsive --- */
 @media (max-width: 1100px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-right { min-height: 380px; }
   .featured-cards { grid-template-columns: 1fr 1fr; }
   .featured-cards .fcard:first-child { grid-column: 1 / -1; }
   .why-top, .contention { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
-  .hero { padding-top: 24px; }
+  .hero { padding: 16px 16px 0; }
+  .hero-left { padding: 16px 0 24px; }
+  .hero-desc { font-size: 15px; margin-bottom: 24px; }
   .featured-cards { grid-template-columns: 1fr; }
   .why-services { grid-template-columns: 1fr 1fr; }
   .gallery-head { grid-template-columns: 1fr; }
