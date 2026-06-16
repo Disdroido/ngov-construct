@@ -5,12 +5,12 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      title: 'NGOV Construct — Building what stays standing, and remembering what didn\'t',
+      title: 'NGOV Construct | Building what stays standing, and remembering what didn\'t',
       htmlAttrs: { lang: 'en' },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'NGOV Construct — Sydney-based construction company building, restoring, and preserving what matters.' }
+        { name: 'description', content: 'NGOV Construct | NSW construction company specializing in additions, renovations, and outdoor living. Serving Sydney, Central Coast, Newcastle, Wollongong, the Blue Mountains, and regional New South Wales.' }
       ],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

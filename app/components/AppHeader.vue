@@ -2,7 +2,7 @@
   <header class="sticky top-0 z-30 bg-off-white/[.88] backdrop-blur-xl border-b border-rule-soft">
     <div class="max-w-content mx-auto px-8 py-[18px] grid grid-cols-[auto_1fr_auto] items-center gap-8 max-[720px]:grid-cols-[1fr_auto] max-[720px]:px-5">
       <NuxtLink to="/" class="flex items-center gap-3 no-underline">
-        <img src="/img/logo.webp" alt="NGOV" class="h-9 w-auto" />
+        <img src="/img/ngov-logo.png" alt="NGOV" class="h-9 w-auto" />
       </NuxtLink>
 
       <nav class="justify-self-center flex gap-8 text-sm font-medium text-ink-2 max-[720px]:hidden">
@@ -48,7 +48,7 @@
           <button class="absolute top-[18px] right-[18px] bg-off-white border border-rule w-9 h-9 rounded-full text-lg cursor-pointer text-ink grid place-items-center z-[2] hover:bg-ink hover:text-white" @click="inquiryOpen = false">&times;</button>
           <div>
             <h3 class="font-display font-bold text-[30px] leading-[1.1] tracking-[-.02em] m-0 mb-[10px] text-balance">Tell us about <em class="not-italic text-red">your project.</em></h3>
-            <p class="text-[14.5px] leading-[1.55] text-ink-soft m-0 text-pretty">A rough scope and a timeline gets you the right reply. We'll be in touch within a few days — usually sooner.</p>
+            <p class="text-[14.5px] leading-[1.55] text-ink-soft m-0 text-pretty">A rough scope and a timeline gets you the right reply. We'll be in touch within a few days, usually sooner.</p>
           </div>
           <form class="flex flex-col gap-[18px]" @submit.prevent="submitInquiry">
             <div class="grid grid-cols-2 gap-3 max-[720px]:grid-cols-1">
@@ -86,12 +86,12 @@
               <textarea v-model="form.description" placeholder="Address, rough scope, timing&hellip;" rows="3" required class="font-sans text-sm text-ink bg-transparent border-0 border-b border-rule py-2 outline-none w-full focus:border-red resize-y min-h-[96px]"></textarea>
             </div>
             <button type="submit" class="self-start mt-2 font-sans font-semibold text-sm bg-red text-white border-0 rounded-full py-3 px-6 cursor-pointer inline-flex items-center gap-[10px] transition-colors hover:bg-red-dark">
-              {{ sent ? "Thanks — we'll be in touch" : 'Send inquiry' }}
+              {{ sent ? "Thanks, we'll be in touch" : 'Send inquiry' }}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="w-3 h-3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
           </form>
           <div class="mt-1 pt-[18px] border-t border-rule-soft font-mono text-[11px] tracking-[.14em] uppercase text-ink-soft">
-            Prefer to call — <a href="tel:+14135550147" class="text-ink no-underline border-b border-rule hover:border-red hover:text-red">(413) 555 — 0147</a>
+            Prefer to call <a href="tel:+14135550147" class="text-ink no-underline border-b border-rule hover:border-red hover:text-red">(413) 555-0147</a>
           </div>
         </div>
       </div>

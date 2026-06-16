@@ -2,12 +2,12 @@
   <footer class="bg-navy-deep text-white pt-14 pb-8">
     <div class="max-w-content mx-auto px-8 grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 items-start max-[1100px]:grid-cols-3 max-[720px]:grid-cols-2 max-[720px]:px-5">
       <div class="flex flex-col gap-4 max-[1100px]:col-span-full">
-        <img src="/img/logo.webp" alt="NGOV" class="h-9 w-auto" style="filter: brightness(0) invert(1)" />
-        <p class="text-sm text-white/65 max-w-[32ch] leading-[1.55] m-0">NGOV builds, restores, and keeps the record. A heritage-and-adaptive-reuse practice working the older bones of New England since 1971.</p>
+        <img src="/img/ngov-logo.png" alt="NGOV" class="w-48 h-auto" style="filter: brightness(0) invert(1)" />
+        <p class="text-sm text-white/65 max-w-[32ch] leading-[1.55] m-0">NGOV Construct is a residential builder and heritage restoration practice. Home additions, kitchen and bath renovations, decks, pergolas, granny flats, and custom carpentry across Sydney and regional NSW.</p>
         <div class="font-mono text-[11.5px] leading-[1.65] text-white/55 mt-2">
           112 Depot Road<br>
-          Hensley, MA 01062<br>
-          (413) 555 — 0147
+          Hensley, NSW 2765<br>
+          (413) 555-0147
         </div>
       </div>
       <div>
@@ -37,8 +37,8 @@
       </div>
     </div>
     <div class="border-t border-white/[0.08] mt-14 pt-6 px-8 max-w-content mx-auto flex justify-between font-mono text-[10.5px] tracking-[.15em] uppercase text-white/40 max-[720px]:flex-col max-[720px]:gap-2 max-[720px]:text-center max-[720px]:px-5">
-      <span>&copy; MCMLXXI — MMXXVI · NGOV Construct</span>
-      <span>Hensley, Massachusetts</span>
+      <span>&copy; 1971–2026 · NGOV Construct</span>
+      <span>Hensley, New South Wales</span>
       <span>Set in Poppins, Inter &amp; JetBrains Mono</span>
     </div>
   </footer>
