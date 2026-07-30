@@ -91,7 +91,7 @@
             </button>
           </form>
           <div class="mt-1 pt-[18px] border-t border-rule-soft font-mono text-[11px] tracking-[.14em] uppercase text-ink-soft">
-            Prefer to call <a href="tel:+14135550147" class="text-ink no-underline border-b border-rule hover:border-red hover:text-red">(413) 555-0147</a>
+            Prefer to call <a href="tel:+61410901455" class="text-ink no-underline border-b border-rule hover:border-red hover:text-red">0410 901 455</a>
           </div>
         </div>
       </div>

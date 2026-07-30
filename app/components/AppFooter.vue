@@ -7,7 +7,7 @@
         <div class="font-mono text-[11.5px] leading-[1.65] text-white/55 mt-2">
           112 Depot Road<br>
           Hensley, NSW 2765<br>
-          (413) 555-0147
+          0410 901 455
         </div>
       </div>
       <div>

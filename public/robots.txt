@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow:
+
+Sitemap: https://ngovconstruct.com.au/sitemap.xml

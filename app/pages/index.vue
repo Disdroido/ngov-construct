@@ -30,7 +30,7 @@
           <p>Three recent projects. One finished, one just finished, one on site as we type.</p>
         </div>
         <div class="featured-cards">
-          <article class="fcard featured-img" :style="{ backgroundImage: `url(${imgSrc(featured[0])})` }">
+          <article class="fcard featured-img" :style="{ backgroundImage: `url('${imgSrc(featured[0])}')` }">
             <div>
               <div class="meta">{{ featured[0].type }} · {{ featured[0].city }}</div>
               <h3><a href="#archive" @click.prevent="open = featured[0]">{{ featured[0].title }}</a></h3>
@@ -39,7 +39,7 @@
             </div>
             <a class="more" href="#archive" @click.prevent="open = featured[0]">Read the file →</a>
           </article>
-          <article class="fcard red">
+          <article class="fcard featured-img" :style="{ backgroundImage: `url('${imgSrc(featured[1])}')` }">
             <div>
               <div class="meta">{{ featured[1].type }} · {{ featured[1].city }}</div>
               <h3><a href="#archive" @click.prevent="open = featured[1]">{{ featured[1].title }}</a></h3>
@@ -47,7 +47,7 @@
             </div>
             <a class="more" href="#archive" @click.prevent="open = featured[1]">Read the file →</a>
           </article>
-          <article class="fcard navy">
+          <article class="fcard featured-img" :style="{ backgroundImage: `url('${imgSrc(featured[2])}')` }">
             <div>
               <div class="meta">{{ featured[2].type }} · ON SITE</div>
               <h3><a href="#archive" @click.prevent="open = featured[2]">{{ featured[2].title }}</a></h3>
@@ -88,7 +88,7 @@
             @click="open = p"
           >
             <div class="tile-frame">
-              <img class="tile-img" :src="imgSrc(p)" :alt="p.title" loading="lazy" />
+              <img class="tile-img" :src="imgSrc(p)" :alt="`${p.title} — ${p.type}, ${p.city}`" loading="lazy" />
             </div>
           </article>
         </div>
@@ -102,7 +102,7 @@
             @click="open = t.p"
           >
             <div class="tile-frame" :style="{ height: t.style._h + 'px' }">
-              <img class="tile-img" :src="imgSrc(t.p)" :alt="t.p.title" loading="lazy" />
+              <img class="tile-img" :src="imgSrc(t.p)" :alt="`${t.p.title} — ${t.p.type}, ${t.p.city}`" loading="lazy" />
             </div>
           </article>
         </div>
@@ -117,7 +117,7 @@
               <a class="more" href="#contact">Learn more →</a>
             </div>
             <div class="image">
-              <img src="/img/photo2.jpg" alt="Restoration site" />
+              <img src="/img/works/WhatsApp%20Image%202026-07-30%20at%208.55.29%20PM.jpeg" alt="NGOV utes on site at a scaffolded two-storey build" />
             </div>
           </div>
           <div class="why-services">
@@ -125,7 +125,6 @@
             <div v-for="s in services" :key="s.title" class="item">
               <h4>{{ s.title }}</h4>
               <p>{{ s.body }}</p>
-              <a href="#contact">Learn more →</a>
             </div>
           </div>
         </div>
@@ -167,7 +166,7 @@
           <h2>Tell us about your project. <em>We'll come look at it.</em></h2>
           <div class="cta-row">
             <button class="btn-primary large ghost" @click="openInquiry">Start your project<span class="ico">&#8594;</span></button>
-            <span class="or-call">Or call <a href="tel:+14135550147">(413) 555-0147</a></span>
+            <span class="or-call">Or call <a href="tel:+61410901455">0410 901 455</a></span>
           </div>
         </div>
       </section>
@@ -179,7 +178,7 @@
     <div v-if="open" class="modal-scrim" @click="open = null">
       <div class="modal" @click.stop>
         <div class="modal-img" :class="{ lost: open.status === 'lost' }">
-          <img :src="imgSrc(open)" :alt="open.title" />
+          <img :src="imgSrc(open)" :alt="`${open.title} — ${open.type}, ${open.city}`" />
           <div class="tint"></div>
           <div class="tile-cut"></div>
           <div class="tile-cut2"></div>
@@ -214,11 +213,46 @@
 </template>
 
 <script setup lang="ts">
+const { public: { siteUrl } } = useRuntimeConfig()
+const pageTitle = 'NGOV Construct | Carpenters & Builders — Sydney & NSW'
+const pageDesc = 'Carpenters & builders serving Sydney & regional NSW. First-floor additions, framing, decking, granny flats, pergolas & structural LVL work.'
+
+useSeoMeta({
+  title: pageTitle,
+  description: pageDesc,
+  ogTitle: pageTitle,
+  ogDescription: pageDesc,
+  ogType: 'website',
+  ogUrl: siteUrl,
+  ogSiteName: 'NGOV Construct',
+  ogImage: `${siteUrl}/img/og-image.jpg`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  twitterCard: 'summary_large_image',
+  twitterTitle: pageTitle,
+  twitterDescription: pageDesc,
+  twitterImage: `${siteUrl}/img/og-image.jpg`,
+})
+
 useHead({
-  title: 'NGOV Construct | Building what stays standing, and remembering what didn\'t',
-  meta: [
-    { name: 'description', content: 'NGOV Construct | NSW construction company specializing in additions, renovations, and outdoor living. Serving Sydney, Central Coast, Newcastle, Wollongong, the Blue Mountains, and regional New South Wales.' }
-  ]
+  link: [{ rel: 'canonical', href: `${siteUrl}/` }],
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'HomeAndConstructionBusiness',
+      '@id': `${siteUrl}/#business`,
+      name: 'NGOV Construct',
+      telephone: '+61 410 901 455',
+      slogan: 'Building what stays standing.',
+      description: pageDesc,
+      url: siteUrl,
+      logo: `${siteUrl}/img/ngov-logo.png`,
+      image: `${siteUrl}/img/og-image.jpg`,
+      areaServed: ['Sydney NSW', 'Central Coast NSW', 'Newcastle NSW', 'Wollongong NSW', 'Blue Mountains NSW', 'Hunter Valley NSW'],
+      knowsAbout: ['First-floor additions', 'Framing', 'Decking', 'Concrete formwork', 'Granny flats & ADUs', 'Carpentry', 'Exposed timber pergolas', 'Dincel walling', 'Structural LVL construction', 'Curved skylights']
+    })
+  }]
 })
 
 interface Project {
@@ -246,31 +280,22 @@ const PROJECTS: Project[] = [
   { id: 'ng-001', title: 'Beacon Street Kitchen', year: 1962, completed: 2024, city: 'Hensley, NSW', type: 'Kitchen Renovation', status: 'completed', weight: 3, tag: 'Kitchen', materials: 'Oak cabinetry, soapstone counters, white oak flooring', scope: 'Full gut renovation, new layout, custom cabinetry', note: 'The original kitchen hadn\'t been touched since 1962. Two windows opened up, one wall came down. The family eats in the kitchen now.', img: 0 },
   { id: 'ng-002', title: 'Fenwick Rear Addition', year: 1928, completed: 2023, city: 'Newcastle, NSW', type: 'Addition', status: 'completed', weight: 2, tag: 'Addition', materials: 'Cedar siding, white oak floors, fiber-cement trim', scope: '260 sq ft family room + half bath', note: 'Matched the existing brackets on the eaves. They were milled by hand in 1928, so we milled the new ones by hand too.', img: 1 },
   { id: 'ng-003', title: 'Maple Avenue Bathroom', year: 1955, completed: 2024, city: 'Wollongong, NSW', type: 'Bath Renovation', status: 'completed', weight: 2, tag: 'Bath', materials: 'Marble tile, brass fixtures, walnut vanity', scope: 'Primary bath gut + new tile shower', note: 'Took out a cast-iron tub the size of a small car. The new one weighs a third as much and holds twice the water.', img: 2 },
-  { id: 'ng-004', title: 'Coburn Garage Build', year: 2024, completed: 2024, city: 'Central Coast, NSW', type: 'Detached Garage', status: 'completed', weight: 2, tag: 'Outbuilding', materials: 'Hemlock frame, board-and-batten siding, metal roof', scope: '24×24 detached two-car with loft', note: 'Started in April. Done by October. The loft is for the model railroad.', img: 3 },
-  { id: 'ng-005', title: 'The Verity Mudroom', year: 1971, completed: 2023, city: 'Hunter Valley, NSW', type: 'Addition', status: 'completed', weight: 2, tag: 'Mudroom', materials: 'Slate floor, beadboard, white oak benches', scope: '8×14 mudroom + half-bath off the kitchen', note: 'Four kids, three dogs, two bikes. The mudroom had to earn its keep, and it does.', img: 4 },
-  { id: 'ng-006', title: 'Stonington Front Porch', year: 1908, completed: 2024, city: 'Kiama, NSW', type: 'Porch Rebuild', status: 'completed', weight: 2, tag: 'Porch', materials: 'Mahogany decking, hand-turned balusters, slate steps', scope: 'Full porch rebuild on original footprint', note: 'Original porch was rotted through. We rebuilt it joist-for-joist, kept the column details, swapped the decking for mahogany.', img: 5 },
-  { id: 'ng-007', title: 'The Workshop', year: 1971, completed: 2004, city: 'Hensley, NSW', type: 'Founder\'s Shop', status: 'completed', weight: 2, tag: 'Our Shop', materials: 'Pine frame, corrugated steel, polished concrete', scope: 'Ongoing in-house improvements', note: 'Where the firm started. We renovate it ourselves, in slow weeks between jobs.', img: 6 },
-  { id: 'ng-008', title: 'Dunbar Sunroom', year: 1992, completed: 2024, city: 'Southern Highlands, NSW', type: 'Sunroom', status: 'completed', weight: 3, tag: 'Sunroom', materials: 'Cedar, glass, radiant floor', scope: '3-season sunroom + new deck', note: 'South-facing. Catches sun nine months of the year. The cat lives there now.', img: 7 },
-  { id: 'ng-009', title: 'Greavey Dormer', year: 1989, completed: 2023, city: 'Port Macquarie, NSW', type: 'Dormer Addition', status: 'completed', weight: 2, tag: 'Dormer', materials: 'Asphalt shingles, copper flashing, fir framing', scope: 'Shed dormer + new bath on second floor', note: 'Added 180 square feet of headroom upstairs. The new bathroom is where the chimney used to be.', img: 8 },
-  { id: 'ng-010', title: 'East Warren Kitchen', year: 1856, completed: 2023, city: 'Bathurst, NSW', type: 'Kitchen Renovation', status: 'completed', weight: 2, tag: 'Kitchen', materials: 'Reclaimed pine, soapstone, original beams exposed', scope: 'Kitchen + pantry renovation', note: 'Pulled down a 1980s dropped ceiling and found hand-hewn beams underneath. We kept them.', img: 9 },
-  { id: 'ng-011', title: 'Harbor Cottage', year: 1950, city: 'Coffs Harbour, NSW', type: 'Whole-Home Renovation', status: 'active', weight: 3, tag: 'Renovation', materials: 'Cedar shingle, fiber-cement, copper flashing', scope: 'Interior gut + new envelope, Phase 2 of 3', note: 'Started in March. New copper roof scheduled for June. Owners moved out for the summer.', img: 10 },
-  { id: 'ng-012', title: 'Ansell Pool House', year: 2024, completed: 2024, city: 'Parramatta, NSW', type: 'Outbuilding', status: 'completed', weight: 2, tag: 'Pool House', materials: 'Brick veneer, cedar siding, IPE decking', scope: 'Pool house + outdoor shower + storage', note: '240 square feet. Two changing rooms, an outdoor shower, and a beer fridge.', img: 11 },
-  { id: 'ng-013', title: 'Pritchard Barn Conversion', year: 1902, completed: 2024, city: 'Port Stephens, NSW', type: 'Adaptive Reuse', status: 'completed', weight: 3, tag: 'Barn → Studio', materials: 'Hemlock frame restored, fiber-cement, slate', scope: 'Barn converted to art studio + guest suite', note: 'The middle bay is now a working art studio with northern light. The original hayloft stayed where it was.', img: 0 },
-  { id: 'ng-014', title: 'Cobb\'s Point Deck', year: 1985, completed: 2023, city: 'Lake Macquarie, NSW', type: 'Deck + Outdoor Living', status: 'completed', weight: 2, tag: 'Deck', materials: 'IPE decking, stainless cable rail, granite piers', scope: '400 sq ft wraparound deck with kitchen', note: 'Hurricane-rated cable rail. The owners cook outside from May through October.', img: 1 },
-  { id: 'ng-015', title: 'Thurlow Two-Bath', year: 1943, completed: 2024, city: 'Mosman, NSW', type: 'Bath Renovation (x2)', status: 'completed', weight: 2, tag: 'Bath', materials: 'Subway tile, marble mosaic, brass', scope: 'Primary + guest bath, same scope each', note: 'Two bathrooms, ten weeks. Owners showered at the gym. They have not forgiven us, but they\'re happy.', img: 2 },
-  { id: 'ng-016', title: 'Kellerman ADU', year: 2023, completed: 2024, city: 'Manly, NSW', type: 'Accessory Dwelling Unit', status: 'completed', weight: 3, tag: 'ADU', materials: 'SIP panels, cedar siding, metal roof', scope: '640 sq ft 1-bedroom ADU above garage', note: 'First ADU permitted in the neighborhood. Took eight months and three zoning hearings to get the permit. Six months to build.', img: 3 },
-  { id: 'ng-017', title: 'Meacham Roof + Siding', year: 1972, city: 'Orange, NSW', type: 'Envelope Replacement', status: 'active', weight: 2, tag: 'Roof + Siding', materials: 'Standing-seam metal, fiber-cement, copper', scope: 'Full roof + siding + insulation upgrade', note: 'Currently on site. Found rot in three places we didn\'t expect. We\'re rebuilding the soffits before the weather turns.', img: 4 },
-  { id: 'ng-018', title: 'Perry Garage Conversion', year: 1965, completed: 2023, city: 'Dubbo, NSW', type: 'Garage Conversion', status: 'completed', weight: 2, tag: 'Garage → Studio', materials: 'Insulated panels, drywall, oak floors', scope: '2-car garage converted to home office + studio', note: 'Owner works from home full-time now. The cars stay outside. Nobody is complaining.', img: 5 },
-  { id: 'ng-019', title: 'Wyatt Basement Finish', year: 1978, completed: 2023, city: 'Katoomba, NSW', type: 'Basement Finish', status: 'completed', weight: 2, tag: 'Basement', materials: 'LVT flooring, drywall, custom built-ins', scope: '1,100 sq ft basement: rec room, bath, office', note: 'Sealed and insulated before we touched a single finish. Dry basement, warm basement. That\'s the order.', img: 6 },
-  { id: 'ng-020', title: 'Fairlee Boathouse', year: 1908, completed: 2023, city: 'Lake Macquarie, NSW', type: 'Outbuilding Restoration', status: 'completed', weight: 2, tag: 'Boathouse', materials: 'Hemlock pilings, cedar shingle, copper', scope: 'Foundation rebuild + new roof + interior', note: 'Stores the family\'s canoes now, same as the day it was built. Just a different family.', img: 7 },
-  { id: 'ng-021', title: 'Worcester Café Fit-out', year: 1918, city: 'Surry Hills, NSW', type: 'Small Commercial', status: 'active', weight: 3, tag: 'Commercial', materials: 'Reclaimed brick, white oak, brass', scope: 'Coffee shop build-out in former retail space', note: 'Decommissioned 2019 as a corner store. Opening as a coffee shop in August. The original tin ceiling stayed.', img: 8 },
-  { id: 'ng-022', title: 'Chester Pergola + Patio', year: 2023, completed: 2023, city: 'Bowral, NSW', type: 'Outdoor Structure', status: 'completed', weight: 2, tag: 'Outdoor Living', materials: 'White oak frame, bluestone patio, gas firepit', scope: '12×16 pergola + 400 sq ft patio + firepit', note: 'Three weeks on site. Hosts the family\'s summer dinners and the neighborhood\'s autumn ones.', img: 9 },
-  { id: 'ng-023', title: 'New London Window Replace', year: 1902, completed: 2024, city: 'Goulburn, NSW', type: 'Window Replacement', status: 'completed', weight: 2, tag: 'Windows', materials: 'Marvin wood-clad windows, copper flashing', scope: 'Replace 22 windows, match historical sashes', note: 'Worked from a scaffold for four weeks. Matched every sash divide. The historic commission signed off in one visit.', img: 10 },
-  { id: 'ng-024', title: 'Barre Stair Rebuild', year: 1889, completed: 2024, city: 'Lithgow, NSW', type: 'Interior Carpentry', status: 'completed', weight: 2, tag: 'Stairs', materials: 'Quartersawn oak treads, walnut handrail', scope: 'Full interior stair rebuild, code upgrade', note: 'Original stairs were treacherous and beautiful. New stairs are safer and almost as beautiful.', img: 11 },
-  { id: 'ng-025', title: 'Halverson Home Addition', year: 1901, completed: 1998, city: 'Hensley, NSW', type: 'Addition', status: 'completed', weight: 2, tag: 'Addition', materials: 'Clapboard, fieldstone foundation, slate', scope: '12×16 reading room off the kitchen', note: 'The founder\'s own house. The reading room is where the firm\'s books live.', img: 0 },
-  { id: 'ng-026', title: 'Revere Three-Season Porch', year: 2024, completed: 2024, city: 'Cronulla, NSW', type: 'Porch Addition', status: 'completed', weight: 2, tag: 'Porch', materials: 'Cedar, screened panels, slate floor', scope: '14×20 screened porch + composite deck', note: 'Built start-to-finish in seven weeks. The screens come down for winter and live in the garage.', img: 1 },
-  { id: 'ng-027', title: 'Corbin Greenhouse', year: 1937, completed: 2024, city: 'Windsor, NSW', type: 'Outbuilding', status: 'completed', weight: 3, tag: 'Greenhouse', materials: 'Cedar frame, double-wall polycarbonate, slate floor', scope: '10×14 lean-to greenhouse + raised beds', note: 'Lean-to against the south side of an existing garage. Three feet of snow load, vented for July.', img: 2 },
-  { id: 'ng-028', title: 'Alden Cottage Pre-Build', year: 1859, city: 'Paddington, NSW', type: 'Planning + Survey', status: 'active', weight: 2, tag: 'Pre-Construction', materials: 'TBD, survey in progress', scope: 'Whole-home renovation, currently in design', note: 'Survey phase. Owner is the fifth generation in the house. We expect to be on site by September.', img: 3 }
+  { id: 'ng-005', title: 'The Verity Mudroom', year: 1971, completed: 2023, city: 'Hunter Valley, NSW', type: 'Addition', status: 'completed', weight: 2, tag: 'Mudroom', materials: 'Slate floor, beadboard, white oak benches', scope: '8×14 mudroom + half-bath off the kitchen', note: 'Four kids, three dogs, two bikes. The mudroom had to earn its keep, and it does.', img: 3 },
+  { id: 'ng-007', title: 'The Workshop', year: 1971, completed: 2004, city: 'Hensley, NSW', type: 'Founder\'s Shop', status: 'completed', weight: 2, tag: 'Our Shop', materials: 'Pine frame, corrugated steel, polished concrete', scope: 'Ongoing in-house improvements', note: 'Where the firm started. We renovate it ourselves, in slow weeks between jobs.', img: 4 },
+  { id: 'ng-008', title: 'Dunbar Sunroom', year: 1992, completed: 2024, city: 'Southern Highlands, NSW', type: 'Sunroom', status: 'completed', weight: 3, tag: 'Sunroom', materials: 'Cedar, glass, radiant floor', scope: '3-season sunroom + new deck', note: 'South-facing. Catches sun nine months of the year. The cat lives there now.', img: 5 },
+  { id: 'ng-010', title: 'East Warren Kitchen', year: 1856, completed: 2023, city: 'Bathurst, NSW', type: 'Kitchen Renovation', status: 'completed', weight: 2, tag: 'Kitchen', materials: 'Reclaimed pine, soapstone, original beams exposed', scope: 'Kitchen + pantry renovation', note: 'Pulled down a 1980s dropped ceiling and found hand-hewn beams underneath. We kept them.', img: 6 },
+  { id: 'ng-011', title: 'Harbor Cottage', year: 1950, city: 'Coffs Harbour, NSW', type: 'Whole-Home Renovation', status: 'active', weight: 3, tag: 'Renovation', materials: 'Cedar shingle, fiber-cement, copper flashing', scope: 'Interior gut + new envelope, Phase 2 of 3', note: 'Started in March. New copper roof scheduled for June. Owners moved out for the summer.', img: 7 },
+  { id: 'ng-012', title: 'Ansell Pool House', year: 2024, completed: 2024, city: 'Parramatta, NSW', type: 'Outbuilding', status: 'completed', weight: 2, tag: 'Pool House', materials: 'Brick veneer, cedar siding, IPE decking', scope: 'Pool house + outdoor shower + storage', note: '240 square feet. Two changing rooms, an outdoor shower, and a beer fridge.', img: 8 },
+  { id: 'ng-016', title: 'Kellerman ADU', year: 2023, completed: 2024, city: 'Manly, NSW', type: 'Accessory Dwelling Unit', status: 'completed', weight: 3, tag: 'ADU', materials: 'SIP panels, cedar siding, metal roof', scope: '640 sq ft 1-bedroom ADU above garage', note: 'First ADU permitted in the neighborhood. Took eight months and three zoning hearings to get the permit. Six months to build.', img: 9 },
+  { id: 'ng-018', title: 'Perry Garage Conversion', year: 1965, completed: 2023, city: 'Dubbo, NSW', type: 'Garage Conversion', status: 'completed', weight: 2, tag: 'Garage → Studio', materials: 'Insulated panels, drywall, oak floors', scope: '2-car garage converted to home office + studio', note: 'Owner works from home full-time now. The cars stay outside. Nobody is complaining.', img: 10 },
+  { id: 'ng-021', title: 'Worcester Café Fit-out', year: 1918, city: 'Surry Hills, NSW', type: 'Small Commercial', status: 'active', weight: 3, tag: 'Commercial', materials: 'Reclaimed brick, white oak, brass', scope: 'Coffee shop build-out in former retail space', note: 'Decommissioned 2019 as a corner store. Opening as a coffee shop in August. The original tin ceiling stayed.', img: 11 },
+  { id: 'ng-029', title: '90 Macquarie Street', year: 2026, completed: 2026, city: 'Chifley, NSW', type: 'Curved Skylight', status: 'completed', weight: 3, tag: 'Skylight', materials: 'Curved LVL ribs, structural LVL timber framing', scope: 'Dual internal detailed curved skylight', note: 'Dual internal detailed curved skylight.', img: 29 },
+  { id: 'ng-030', title: '90 Macquarie Street', year: 2026, city: 'Chifley, NSW', type: 'Curved Skylight — Structure', status: 'completed', weight: 2, tag: 'Skylight', materials: 'Curved LVL ribs, structural LVL timber framing', scope: 'Crane lift of the curved roof structure', note: 'The curved skylight roof structure goes in by crane.', img: 25 },
+  { id: 'ng-031', title: '90 Macquarie Street', year: 2026, city: 'Chifley, NSW', type: 'Curved Skylight — Steel Frame', status: 'completed', weight: 2, tag: 'Skylight', materials: 'Curved LVL ribs, structural LVL timber framing', scope: 'Propped steel wall frame below the skylight', note: 'Structural steel wall framing below the skylight ring.', img: 26 },
+  { id: 'ng-032', title: '90 Macquarie Street', year: 2026, city: 'Chifley, NSW', type: 'Curved Skylight — Ring Framing', status: 'completed', weight: 2, tag: 'Skylight', materials: 'Curved LVL ribs, structural LVL timber framing', scope: 'Ring framing around the skylight opening', note: 'Curved ribs laid out around the skylight opening.', img: 27 },
+  { id: 'ng-033', title: '90 Macquarie Street', year: 2026, city: 'Chifley, NSW', type: 'Curved Skylight — Install', status: 'completed', weight: 2, tag: 'Skylight', materials: 'Curved LVL ribs, structural LVL timber framing', scope: 'Setting the curved ring by hand', note: 'Setting the curved ring by hand.', img: 28 },
+  { id: 'ng-034', title: '12 Carrington Street', year: 2026, completed: 2026, city: 'Revesby, NSW', type: 'Structural Redesign', status: 'completed', weight: 2, tag: 'Structural', materials: 'Engineered LVL beams, structural LVL timber', scope: 'Open-plan redesign: beams carry the upper floor, load-bearing walls removed below', note: 'Structural redesign for a modern open-plan layout. Engineered beams support the upper floor, allowing the safe removal of load-bearing walls below. Built with precision.', img: 30 },
+  { id: 'ng-035', title: '147 Wentworth Road', year: 2026, city: 'Strathfield, NSW', type: 'Feature Wall', status: 'active', weight: 2, tag: 'Feature Wall', materials: 'Structural LVL Timber', scope: 'Fire + TV feature wall, framed for long-term stability', note: 'Precision-built fire and TV feature wall, designed with structural stability in mind for a flawless, long-lasting finish.', img: 31 },
 ]
 
 const services = [
@@ -284,34 +309,41 @@ const services = [
   { title: 'Dincel Walling', body: 'Dincel structural walling for basements, retaining walls, and load-bearing applications. Faster on site than blockwork, stronger on paper than poured concrete, and a permanent formwork system that stays in place.' }
 ]
 
-const featured = PROJECTS.filter(p => ['ng-001', 'ng-016', 'ng-021'].includes(p.id))
+const featured = PROJECTS.filter(p => ['ng-029', 'ng-034', 'ng-035'].includes(p.id))
 
 const WORKS_IMAGES = [
-  'DJIoiBTy4y8_1.jpg',
-  'DOTCy4ilY-z_2.jpg',
-  'DFHy-EuS559_2.jpg',
-  'IMG_2399 Large.jpeg',
-  'DFHyOaSSi5E_2.jpg',
-  'DFH16BKx1YF_1.jpg',
-  'IMG_2401 Large.jpeg',
-  'DFH16BKx1YF_2.jpg',
-  'DFH16BKx1YF_3.jpg',
-  'dji_fly_20260513_084446_169_1778625968942_photo_optimized Large.jpeg',
-  'DFHw8yBSET7_1.jpg',
-  'DFZgxFsSj1p_2.jpg',
-  'DNSLAJhOPCE_2.jpg',
   'DFG5qrFyj4Q_1.jpg',
-  'DNSLAJhOPCE_1.jpg',
-  'DNSJl7guTlF_1.jpg',
   'DFG5qrFyj4Q_2.jpg',
   'DFG5qrFyj4Q_3.jpg',
+  'DFH16BKx1YF_1.jpg',
+  'DFH16BKx1YF_2.jpg',
+  'DFH16BKx1YF_3.jpg',
+  'DFHw8yBSET7_1.jpg',
+  'DFHy-EuS559_2.jpg',
+  'DFHyOaSSi5E_2.jpg',
+  'DFZgxFsSj1p_2.jpg',
   'DIjEEanyNcq_1.jpg',
-  'dji_fly_20260513_083916_163_1778625964471_photo_optimized Large.jpeg',
+  'DJIoiBTy4y8_1.jpg',
+  'DN9-KbkkoY7_1.jpg',
+  'DN9-KbkkoY7_2.jpg',
+  'DNSJl7guTlF_1.jpg',
+  'DNSLAJhOPCE_1.jpg',
+  'DNSLAJhOPCE_2.jpg',
+  'DOTCy4ilY-z_2.jpg',
   'DP3UMJwElKl_1.jpg',
   'DP3UMJwElKl_2.jpg',
-  'DN9-KbkkoY7_2.jpg',
-  'DN9-KbkkoY7_1.jpg',
+  'dji_fly_20260513_083916_163_1778625964471_photo_optimized Large.jpeg',
+  'dji_fly_20260513_084446_169_1778625968942_photo_optimized Large.jpeg',
+  'IMG_2399 Large.jpeg',
+  'IMG_2401 Large.jpeg',
   'IMG_2582 Large.jpeg',
+  'WhatsApp Image 2026-07-30 at 7.31.17 PM Large.jpeg',
+  'WhatsApp Image 2026-07-30 at 7.31.17 PM(1) Large.jpeg',
+  'WhatsApp Image 2026-07-30 at 7.31.17 PM(2) Large.jpeg',
+  'WhatsApp Image 2026-07-30 at 7.31.17 PM(3) Large.jpeg',
+  'WhatsApp Image 2026-07-30 at 7.31.17 PM(4) Large.jpeg',
+  'WhatsApp Image 2026-07-30 at 8.21.10 PM Large.jpeg',
+  'WhatsApp Image 2026-07-30 at 8.22.16 PM Large.jpeg',
 ]
 
 function imgSrc(p: Project) {
@@ -696,10 +728,6 @@ em { font-style: normal; }
   font-family: 'Poppins','Inter',sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin: 0 0 12px; color: #fff;
 }
 .why-services .item p { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.65); margin: 0 0 16px; text-wrap: pretty; }
-.why-services .item a {
-  font-size: 12.5px; font-weight: 600; color: #E42929; text-decoration: none; letter-spacing: 0.02em;
-  display: inline-flex; gap: 6px; align-items: center;
-}
 
 /* --- about / contention --- */
 .contention { max-width: 1400px; margin: 0 auto; padding: 120px 32px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
