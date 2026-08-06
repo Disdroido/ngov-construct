@@ -277,9 +277,9 @@ provide('inquiryOpen', inquiryOpen)
 function openInquiry() { inquiryOpen.value = true }
 
 const PROJECTS: Project[] = [
-  { id: 'ng-001', title: 'Beacon Street Kitchen', year: 1962, completed: 2024, city: 'Hensley, NSW', type: 'Kitchen Renovation', status: 'completed', weight: 3, tag: 'Kitchen', materials: 'Oak cabinetry, soapstone counters, white oak flooring', scope: 'Full gut renovation, new layout, custom cabinetry', note: 'The original kitchen hadn\'t been touched since 1962. Two windows opened up, one wall came down. The family eats in the kitchen now.', img: 0 },
-  { id: 'ng-002', title: 'Fenwick Rear Addition', year: 1928, completed: 2023, city: 'Newcastle, NSW', type: 'Addition', status: 'completed', weight: 2, tag: 'Addition', materials: 'Cedar siding, white oak floors, fiber-cement trim', scope: '260 sq ft family room + half bath', note: 'Matched the existing brackets on the eaves. They were milled by hand in 1928, so we milled the new ones by hand too.', img: 1 },
-  { id: 'ng-003', title: 'Maple Avenue Bathroom', year: 1955, completed: 2024, city: 'Wollongong, NSW', type: 'Bath Renovation', status: 'completed', weight: 2, tag: 'Bath', materials: 'Marble tile, brass fixtures, walnut vanity', scope: 'Primary bath gut + new tile shower', note: 'Took out a cast-iron tub the size of a small car. The new one weighs a third as much and holds twice the water.', img: 2 },
+  { id: 'ng-036', title: 'First Floor Addition', year: 2026, city: 'Sydney, NSW', type: 'Addition — Subfloor Steel', status: 'active', weight: 3, tag: 'Addition', materials: 'Steel bearers, brick piers, timber joists', scope: 'Steel bearers laid over brick piers, subfloor stage', note: 'Steel going down over the piers. Everything level before the joists land.', img: 32 },
+  { id: 'ng-037', title: 'First Floor Addition', year: 2026, city: 'Sydney, NSW', type: 'Addition — Brickwork', status: 'active', weight: 2, tag: 'Addition', materials: 'Face brick cavity walls, brick piers, Colorbond roofing', scope: 'Subfloor brickwork and piers before the roof goes on', note: 'Cavity brickwork up, piers set, roof sheets on site.', img: 33 },
+  { id: 'ng-038', title: 'Structural Opening', year: 2026, city: 'Sydney, NSW', type: 'Load-Bearing Wall Removal', status: 'active', weight: 2, tag: 'Structural', materials: 'Engineered LVL beam, structural timber framing', scope: 'Load-bearing wall removed, LVL beam carrying the roof above', note: 'The wall came out and the beam carries everything it used to. The living room opens straight onto the deck now.', img: 34 },
   { id: 'ng-005', title: 'The Verity Mudroom', year: 1971, completed: 2023, city: 'Hunter Valley, NSW', type: 'Addition', status: 'completed', weight: 2, tag: 'Mudroom', materials: 'Slate floor, beadboard, white oak benches', scope: '8×14 mudroom + half-bath off the kitchen', note: 'Four kids, three dogs, two bikes. The mudroom had to earn its keep, and it does.', img: 3 },
   { id: 'ng-007', title: 'The Workshop', year: 1971, completed: 2004, city: 'Hensley, NSW', type: 'Founder\'s Shop', status: 'completed', weight: 2, tag: 'Our Shop', materials: 'Pine frame, corrugated steel, polished concrete', scope: 'Ongoing in-house improvements', note: 'Where the firm started. We renovate it ourselves, in slow weeks between jobs.', img: 4 },
   { id: 'ng-008', title: 'Dunbar Sunroom', year: 1992, completed: 2024, city: 'Southern Highlands, NSW', type: 'Sunroom', status: 'completed', weight: 3, tag: 'Sunroom', materials: 'Cedar, glass, radiant floor', scope: '3-season sunroom + new deck', note: 'South-facing. Catches sun nine months of the year. The cat lives there now.', img: 5 },
@@ -344,6 +344,9 @@ const WORKS_IMAGES = [
   'WhatsApp Image 2026-07-30 at 7.31.17 PM(4) Large.jpeg',
   'WhatsApp Image 2026-07-30 at 8.21.10 PM Large.jpeg',
   'WhatsApp Image 2026-07-30 at 8.22.16 PM Large.jpeg',
+  '1.jpeg',
+  '2.jpeg',
+  '3.jpeg',
 ]
 
 function imgSrc(p: Project) {

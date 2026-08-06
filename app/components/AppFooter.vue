@@ -3,10 +3,8 @@
     <div class="max-w-content mx-auto px-8 grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 items-start max-[1100px]:grid-cols-3 max-[720px]:grid-cols-2 max-[720px]:px-5">
       <div class="flex flex-col gap-4 max-[1100px]:col-span-full">
         <img src="/img/ngov-logo.png" alt="NGOV" class="w-48 h-auto" style="filter: brightness(0) invert(1)" />
-        <p class="text-sm text-white/65 max-w-[32ch] leading-[1.55] m-0">NGOV Construct is a residential builder and heritage restoration practice. Home additions, kitchen and bath renovations, decks, pergolas, granny flats, and custom carpentry across Sydney and regional NSW.</p>
         <div class="font-mono text-[11.5px] leading-[1.65] text-white/55 mt-2">
-          112 Depot Road<br>
-          Hensley, NSW 2765<br>
+          Sydney NSW<br>
           0410 901 455
         </div>
       </div>
@@ -30,9 +28,7 @@
       <div>
         <h5 class="text-sm font-semibold m-0 mb-[18px] text-white">Contact</h5>
         <ul class="list-none p-0 m-0 flex flex-col gap-[10px]">
-          <li><a href="mailto:archive@ngov.co" class="text-white/55 text-[13.5px] no-underline transition-colors duration-200 hover:text-red">archive@ngov.co</a></li>
-          <li><a href="mailto:site-visits@ngov.co" class="text-white/55 text-[13.5px] no-underline transition-colors duration-200 hover:text-red">site-visits@ngov.co</a></li>
-          <li><a href="#" class="text-white/55 text-[13.5px] no-underline transition-colors duration-200 hover:text-red">P.O. Box 47, Hensley</a></li>
+          <li><a href="mailto:ngovconstruct@gmail.com" class="text-white/55 text-[13.5px] no-underline transition-colors duration-200 hover:text-red">ngovconstruct@gmail.com</a></li>
         </ul>
       </div>
     </div>
